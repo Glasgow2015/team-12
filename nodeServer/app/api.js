@@ -56,9 +56,42 @@ pool.query('SELECT * FROM Apiary', function(err, rows, fields) {
   res.json(rows);
 });
 
+})
+
+
+router.get('/apiary/:id', function(req,res){
+
+pool.query('SELECT * FROM Apiary WHERE id = ? LIMIT 1',req.params.id, function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows[0]);
+});
+
 
 })
 
 //TODO Make recreate Hive methods for Aparies, Inspections and Harvests
+
+
+router.get('/dictionary/:type',function(req,res){
+  pool.query('SELECT * FROM ?? ',req.params.type, function(err, rows, fields) {
+    if (err) console.log(err  );
+    res.json(rows);
+  });
+})
+
+router.post('/user',function(req,res){
+
+  //TODO: Validate User params
+
+  poll.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
+    if(err) console.log(err);
+    var prepared = [req.body.name,req.body.username,req.body.password,rows[0].IDUserRole,req.body.email,req.body.phone];
+    poll.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
+      if(err) console.log(err);
+    });
+  });
+
+
+})
 
 module.exports = router;
