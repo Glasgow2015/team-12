@@ -93,6 +93,8 @@ pool.query('SELECT * FROM Apiary WHERE IDInspection = ? LIMIT 1',req.params.id, 
   res.json(rows[0]);
 });
 
+});
+
 router.get('/harvest', function(req,res){
 
 
@@ -109,6 +111,7 @@ router.get('/harvest/:id', function(req,res){
 pool.query('SELECT * FROM Harvest WHERE IDHarvest = ? LIMIT 1',req.params.id, function(err, rows, fields) {
   if (err) console.log(err  );
   res.json(rows[0]);
+});
 });
 
 //TODO Make recreate Hive methods for Aparies, Inspections and Harvests
@@ -137,6 +140,6 @@ router.post('/user',function(req,res){
   });
   res.status(500).end();
 
-})
+});
 
 module.exports = router;
