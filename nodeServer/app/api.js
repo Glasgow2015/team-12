@@ -59,10 +59,18 @@ pool.query('SELECT * FROM Apiary', function(err, rows, fields) {
 
 router.get('/apiary/:id', function(req,res){
 
-pool.query('SELECT * FROM Apiary WHERE id = ? LIMIT 1',req.params.id, function(err, rows, fields) {
+pool.query('SELECT * FROM Apiary WHERE IDApiary = ? LIMIT 1',req.params.id, function(err, rows, fields) {
   if (err) console.log(err  );
   res.json(rows[0]);
 });
+
+router.post('/apiary', function(req,res){
+
+var prepared = [req.body.name,req.body.lat,req.body.long,req.body.datecreated,harvmonth,environment,access];
+pool.query('CALL CreateApiary(?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+
+});
+})
 
 
 })
