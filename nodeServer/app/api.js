@@ -82,9 +82,10 @@ router.get('/dictionary/:type',function(req,res){
 router.post('/user',function(req,res){
 
   //TODO: Validate User params
-
+  console.log(req.body);
   pool.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
     if(err) console.log(err);
+    console.log(rows);
     var prepared = [req.body.name,req.body.username,req.body.password,rows[0].IDUserRole,req.body.email,req.body.phone];
     pool.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
       if(err) console.log(err);
