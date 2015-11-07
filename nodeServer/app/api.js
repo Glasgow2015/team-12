@@ -2,6 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
+var pool = require('../lib/database.js');
+var crypto = require('crypto');
 
 router.use(function timeLog(req, res, next) {
   console.log('API Used Time: ', Date.now());
@@ -13,18 +15,131 @@ router.get('/', function(req, res) {
 });
 
 router.get('/hive/:id', function(req, res) {
-  //TODO: Get data about hives from DB return as JSON
-  res.send('Bees live in a hive! Who\'d have thunk :P');
+
+
+pool.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+  if (err) console.log(err);
+  res.json(rows);
 });
 
+
+});
+
+router.get('/hive', function(req,res){
+
+
+pool.query('SELECT * FROM Hive', function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows);
+});
+
+
+})
+
 router.post('/hive', function(req,res){
-  //TODO: Make a new Hive
+
+
 })
 
 router.post('/hive/:id', function(req,res){
   //TODO: Update Hive
 })
 
+
+router.get('/apiary', function(req,res){
+
+
+pool.query('SELECT * FROM Apiary', function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows);
+});
+
+})
+
+
+router.get('/apiary/:id', function(req,res){
+
+pool.query('SELECT * FROM Apiary WHERE IDApiary = ? LIMIT 1',req.params.id, function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows[0]);
+});
+
+router.post('/apiary', function(req,res){
+
+var prepared = [req.body.name,req.body.lat,req.body.long,req.body.datecreated,harvmonth,environment,access];
+pool.query('CALL CreateApiary(?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+
+});
+})
+
+
+})
+
+router.get('/inspection', function(req,res){
+
+
+pool.query('SELECT * FROM Inspection', function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows);
+});
+
+})
+
+
+router.get('/inspection/:id', function(req,res){
+
+pool.query('SELECT * FROM Apiary WHERE IDInspection = ? LIMIT 1',req.params.id, function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows[0]);
+});
+
+});
+
+router.get('/harvest', function(req,res){
+
+
+pool.query('SELECT * FROM Harvest', function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows);
+});
+
+})
+
+
+router.get('/harvest/:id', function(req,res){
+
+pool.query('SELECT * FROM Harvest WHERE IDHarvest = ? LIMIT 1',req.params.id, function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows[0]);
+});
+});
+
 //TODO Make recreate Hive methods for Aparies, Inspections and Harvests
+
+
+router.get('/dictionary/:type',function(req,res){
+  pool.query('SELECT * FROM ?? ',req.params.type, function(err, rows, fields) {
+    if (err) console.log(err  );
+    res.json(rows);
+  });
+})
+
+router.post('/user',function(req,res){
+
+  //TODO: Validate User params
+  console.log(req.body);
+  pool.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
+    if(err) console.log(err);
+    console.log(rows);
+    var hashedPass = crypto.createHash('md5').update(req.body.password);
+    var prepared = [req.body.name,req.body.username,hashedPass,rows[0].IDUserRole,req.body.email,req.body.phone];
+    pool.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
+      if(err) console.log(err);
+      res.status(200).end();
+    });
+  });
+  res.status(500).end();
+
+});
 
 module.exports = router;

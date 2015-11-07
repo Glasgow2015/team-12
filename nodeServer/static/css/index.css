@@ -1,0 +1,21 @@
+#main {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+#sponsor {
+    left: 25%;
+    top: 50%;
+}
+
+#manager {
+    left: 75%;
+    top: 50%;
+}
