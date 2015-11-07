@@ -1,0 +1,8 @@
+<forms>
+	<form label="Inspection" name="insp" id="1">
+		<field type="number" label="Hive Number" name="hive_no" options="" />
+		<field type="text" label="Inspection Date" name="insp_date" options="" />
+		<field type="select" label="Weather Conditions" name="weath_cond" options="Sunny|Cloudy" />
+		<field type="checkbox" label="Queen cells in brood combs" name="queen_cells" options="" />
+	</form>
+</forms>
