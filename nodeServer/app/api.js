@@ -2,6 +2,10 @@
 
 var express = require('express');
 var router = express.Router();
+var config = require('config');
+
+var mysql      = require('mysql');
+var connection = mysql.createConnection(config.get('dbConfig'));
 
 router.use(function timeLog(req, res, next) {
   console.log('API Used Time: ', Date.now());
@@ -13,12 +17,25 @@ router.get('/', function(req, res) {
 });
 
 router.get('/hive/:id', function(req, res) {
-  //TODO: Get data about hives from DB return as JSON
-  res.send('Bees live in a hive! Who\'d have thunk :P');
+  connection.connect();
+
+connection.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+  if (err) console.log(err);
+  res.json(rows);
+});
+
+connection.end();
 });
 
 router.post('/hive', function(req,res){
-  //TODO: Make a new Hive
+  connection.connect();
+
+connection.query('SELECT * FROM Hive', function(err, rows, fields) {
+  if (err) console.log(err);
+  res.json(rows);
+});
+
+connection.end();
 })
 
 router.post('/hive/:id', function(req,res){
