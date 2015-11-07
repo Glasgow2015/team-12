@@ -188,19 +188,19 @@ CREATE TABLE `User` (
 
 CREATE TABLE `UserRoleT` (
 	`IDUserRole` int(11) NOT NULL AUTO_INCREMENT,
-	`UserRoleName` varchar(25) NOT NULL,
+	`NameType` varchar(25) NOT NULL,
 	PRIMARY KEY (`IDUserRole`)
 );
 
 CREATE TABLE `OwnedApiary` (
-	`IDUser` int(11) NOT NULL AUTO_INCREMENT,
-	`IDApiary` int(11) NOT NULL AUTO_INCREMENT,
+	`IDUser` int(11) NOT NULL,
+	`IDApiary` int(11) NOT NULL,
 	PRIMARY KEY (`IDUser`,`IDApiary`)
 );
 
 CREATE TABLE `OwnedHive` (
-	`IDUser` int(11) NOT NULL AUTO_INCREMENT,
-	`IDHive` int(11) NOT NULL AUTO_INCREMENT,
+	`IDUser` int(11) NOT NULL,
+	`IDHive` int(11) NOT NULL,
 	PRIMARY KEY (`IDUser`,`IDHive`)
 );
 
@@ -255,4 +255,3 @@ ALTER TABLE `OwnedApiary` ADD CONSTRAINT `OwnedApiary_fk1` FOREIGN KEY (`IDApiar
 ALTER TABLE `OwnedHive` ADD CONSTRAINT `OwnedHive_fk0` FOREIGN KEY (`IDUser`) REFERENCES `User`(`IDUser`);
 
 ALTER TABLE `OwnedHive` ADD CONSTRAINT `OwnedHive_fk1` FOREIGN KEY (`IDHive`) REFERENCES `Hive`(`IDHive`);
-
