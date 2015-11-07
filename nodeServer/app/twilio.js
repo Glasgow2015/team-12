@@ -7,6 +7,8 @@ var twilio = require('twilio');
 router.post('/', function(req,res){
   var twiml = new twilio.TwimlResponse();
    twiml.message(req.params.Body);
+   console.log("SMS Received:" + req.params.body);
+   console.log(JSON.stringify(req));
 
    res.writeHead(200, {'Content-Type': 'text/xml'});
    res.end(twiml.toString());
