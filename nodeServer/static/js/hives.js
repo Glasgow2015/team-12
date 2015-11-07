@@ -26,42 +26,87 @@ $(document).ready(function(){
         inspections = data;
     });
 
-    $("#data_table").html(generateData(inspections, hiveID));
+    $("#inspections").html(generateInspections(inspections, hiveID));
+
+    var harvests = {};
+
+    $.get("api/harvest", function (data) {
+        harvests = data;
+    });
+
+    $("#harvests").html(generateHarvests(harvests, hiveID));
 
 });
 
-function generateData(hives, apiaryID) {
-    if (hives === undefined) {
-        return "No hives in this apiary."
+function generateHarvests(harvests, hiveID) {
+    if (harvests === undefined) {
+        return "No inspections available for this hive."
     }
 
     var data = [];
-    hives.forEach(function(hive) {
-        if (hive.IDApiary === apiaryID) {
-            data.push(hive);
+    harvests.forEach(function(harvest) {
+        if (harvest.IDHive === hiveID) {
+            data.push(harvest);
         }
     });
 
-    if (hive.length === 0) {
-        return "No hives in this apiary."
+    if (data.length === 0) {
+        return "No inspections available for this hive."
     }
 
-    var html = "<table id=\"data\">"
-        + "<tr id=\"table_title_row\" class=\"data_row\">"
-        + "<th>Number</th>"
-        + "<th>Location</th>"
-        + "<th>Date of installation</th>"
-        + "<th>Type</th>"
-        + "<th>Sun Exposure</th>"
+    var html = "<table id=\"harvests\">"
+        + "<tr class=\"data_row\">"
+            + "<th>Date</th>"
+            + "<th>Quantity</th>"
+            + "<th>Bee Keeper Clothes</th>"
+            + "<th>All Assistant Tools</th>"
+            + "<th>Smoker</th>"
+            + "<th>Bucket Number</th>"
         + "</tr>";
 
-    data.forEach(function(hive) {
+    data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
-            + "<td><a href=\"hives.html?id=" + hive.IDHive + "\">" + hive.HiveNumber + "</a></td>"
-            + "<td>" + hive.GPS + "</td>"
-            + "<td>" + hive.DateCreated + "</td>"
-            + "<td>" + hive.HiveType + "</td>"
-            + "<td>" + hive.SunExp + "</td>"
+                + "<td>" + harvest.DateHarvest + "</td>"
+                + "<td>" + harvest.WeatherCond + "</td>"
+                + "<td>" + harvest.BeeKeeperClothes + "</td>"
+                + "<td>" + harvest.AllAssistantTools + "</td>"
+                + "<td>" + harvest.Smoker + "</td>"
+                + "<td>" + harvest.BucketNumber + "</td>"
+            + "</tr>";
+    });
+
+    html += "</table>";
+    return html;
+};
+
+function generateInspections(inspections, hiveID) {
+    if (inspections === undefined) {
+        return "No inspections available for this hive."
+    }
+
+    var data = [];
+    inspections.forEach(function(inspection) {
+        if (inspection.IDHive === hiveID) {
+            data.push(inspection);
+        }
+    });
+
+    if (data.length === 0) {
+        return "No inspections available for this hive."
+    }
+
+    var html = "<table id=\"inspections\">"
+        + "<tr class=\"data_row\">"
+        + "<th>Date</th>"
+        + "<th>Weather Condition</th>"
+        + "<th>State</th>"
+        + "</tr>";
+
+    data.forEach(function(inspection) {
+        html += "<tr class=\"data_row\">"
+            + "<td>" + inspection.DateInspection + "</td>"
+            + "<td>" + inspection.WeatherCond + "</td>"
+            + "<td>" + inspection.State + "</td>"
             + "</tr>";
     });
 

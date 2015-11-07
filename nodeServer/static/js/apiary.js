@@ -42,7 +42,7 @@ function generateData(hives, apiaryID) {
         }
     });
 
-    if (hive.length === 0) {
+    if (data.length === 0) {
         return "No hives in this apiary."
     }
 
