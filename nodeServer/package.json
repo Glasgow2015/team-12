@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Glasgow2015/team-12#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "nodemailer": "^1.8.0",
+    "nodemailer-smtp-transport": "^1.0.4"
   }
 }
