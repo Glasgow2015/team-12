@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $("#info_table").html(generateInfo(info));
 
-    var apiaries = {};
+    var apiaries = [];
 
     $.get("api/apiary", function (data) {
         apiaries = data;

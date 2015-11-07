@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     $("#info_table").html(generateInfo(info));
 
-    var hives = {};
+    var hives = [];
 
     $.get("api/hive", function (data) {
         hives = data;

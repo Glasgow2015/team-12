@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     $("#info_table").html(generateInfo(info));
 
-    var inspections = {};
+    var inspections = [];
 
     $.get("api/inspection", function (data) {
         inspections = data;
@@ -28,7 +28,7 @@ $(document).ready(function(){
 
     $("#inspections").html(generateInspections(inspections, hiveID));
 
-    var harvests = {};
+    var harvests = [];
 
     $.get("api/harvest", function (data) {
         harvests = data;
