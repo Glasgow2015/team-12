@@ -66,13 +66,14 @@ function generateData(apiaries, userID) {
         return "No apiaries found."
     }
 
-    var html = "<table id=\"data\">"
-        + "<tr id=\"table_title_row\" class=\"data_row\">"
-            + "<th>Name</th>"
-            + "<th>Location</th>"
-            + "<th>No of hives</th>"
-            + "<th>No of sponsors</th>"
-        + "</tr>";
+    var html;
+    html = "<table id=\"data\">\n    " +
+        "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
+        "<th>Name</th>\n        " +
+        "<th>Location</th>\n        " +
+        "<th>No of hives</th>\n        " +
+        "<th>No of sponsors</th>\n    " +
+        "</tr>";
 
     data.forEach(function(apiary) {
         html += "<tr class=\"data_row\">"
@@ -82,4 +83,7 @@ function generateData(apiaries, userID) {
                 + "<td>" + apiary.Sponsors + "</td>"
             + "</tr>"
     });
+
+    html += "</table>";
+    return html;
 }

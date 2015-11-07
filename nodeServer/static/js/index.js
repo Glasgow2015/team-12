@@ -4,21 +4,5 @@
 
 $(document).ready(function(){
 
-    $("#sponsor")
-        .mouseenter(function() {
-            $("#manager").hide();
-        })
-        .mouseleave(function() {
-           $("#manager").show();
-        }
-    );
 
-    $("#manager")
-        .mouseenter(function() {
-            $("#sponsor").hide();
-        })
-        .mouseleave(function() {
-            $("#sponsor").show();
-        }
-    );
 });
