@@ -1,12 +1,36 @@
 var express = require('express');
 var app = express();
 var bodyparser = require ('body-parser');
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+var pool = require('./lib/database.js');
 
 app.use(bodyparser.json()); // for parsing application/json
 app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+
 // serve static files
 app.use(express.static('static'));
+
+// passport
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    pool.query('SELECT * FROM User WHERE Login = ? LIMIT 1',[username], function(err, user) {
+      if (err) { return done(err); }
+      if (!rows[0]) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      var hashedPass = crypto.createHash('md5').update(password);
+      if (rows[0].UserPassword != hashedPass) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, rows[0]);
+    });
+  }
+));
+
+app.use(passport.initialize());
+
 
 
 // send requests to API handler

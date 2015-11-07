@@ -28,6 +28,8 @@
     "node-guid": "0.0.3",
     "nodemailer": "^1.8.0",
     "nodemailer-smtp-transport": "^1.0.4",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
     "twilio": "^2.5.2"
   }
 }

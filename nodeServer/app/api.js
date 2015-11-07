@@ -2,10 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-var config = require('config');
-
-var mysql      = require('mysql');
-var pool = mysql.createPool(config.get('dbConfig'));
+var pool = require('../lib/database.js');
+var crypto = require('crypto');
 
 router.use(function timeLog(req, res, next) {
   console.log('API Used Time: ', Date.now());
@@ -86,12 +84,14 @@ router.post('/user',function(req,res){
   pool.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
     if(err) console.log(err);
     console.log(rows);
-    var prepared = [req.body.name,req.body.username,req.body.password,rows[0].IDUserRole,req.body.email,req.body.phone];
+    var hashedPass = crypto.createHash('md5').update(req.body.password);
+    var prepared = [req.body.name,req.body.username,hashedPass,rows[0].IDUserRole,req.body.email,req.body.phone];
     pool.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
       if(err) console.log(err);
+      res.status(200).end();
     });
   });
-
+  res.status(500).end();
 
 })
 
