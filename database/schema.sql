@@ -135,7 +135,7 @@ CREATE TABLE `Inspection` (
 	PRIMARY KEY (`IDInspection`)
 );
 
-CREATE TABLE `HiveTemper` (
+CREATE TABLE `HiveTemperT` (
 	`IDHiveTemper` int(11) NOT NULL AUTO_INCREMENT,
 	`NameType` varchar(20) NOT NULL,
 	PRIMARY KEY (`IDHiveTemper`)
@@ -180,7 +180,26 @@ CREATE TABLE `User` (
 	`NameUser` varchar(30) NOT NULL,
 	`Login` varchar(30) NOT NULL,
 	`Password` varchar(30) NOT NULL,
+	`UserRoleT` int(11) NOT NULL,
 	PRIMARY KEY (`IDUser`)
+);
+
+CREATE TABLE `UserRoleT` (
+	`IDUserRole` int(11) NOT NULL AUTO_INCREMENT,
+	`UserRoleName` varchar(25) NOT NULL,
+	PRIMARY KEY (`IDUserRole`)
+);
+
+CREATE TABLE `OwnedApiary` (
+	`IDUser` int(11) NOT NULL AUTO_INCREMENT,
+	`IDApiary` int(11) NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (`IDUser`,`IDApiary`)
+);
+
+CREATE TABLE `OwnedHive` (
+	`IDUser` int(11) NOT NULL AUTO_INCREMENT,
+	`IDHive` int(11) NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (`IDUser`,`IDHive`)
 );
 
 ALTER TABLE `Apiary` ADD CONSTRAINT `Apiary_fk0` FOREIGN KEY (`IDGPS`) REFERENCES `GPS`(`IDGPS`);
@@ -195,9 +214,43 @@ ALTER TABLE `Hive` ADD CONSTRAINT `Hive_fk0` FOREIGN KEY (`IDApiary`) REFERENCES
 
 ALTER TABLE `Hive` ADD CONSTRAINT `Hive_fk1` FOREIGN KEY (`IDGPS`) REFERENCES `GPS`(`IDGPS`);
 
+ALTER TABLE `Hive` ADD CONSTRAINT `Hive_fk2` FOREIGN KEY (`HiveTypeT`) REFERENCES `HiveTypeT`(`IDHiveType`);
+
+ALTER TABLE `Hive` ADD CONSTRAINT `Hive_fk3` FOREIGN KEY (`SunExpT`) REFERENCES `SunExpT`(`IDSunExp`);
+
 ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk0` FOREIGN KEY (`IDHive`) REFERENCES `Hive`(`IDHive`);
 
-ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk1` FOREIGN KEY (`IDCombsCond`) REFERENCES `CombsCond`(`IDCombsCond`);
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk1` FOREIGN KEY (`WeatherCondT`) REFERENCES `WeatherCondT`(`IDWeatherCond`);
 
-ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk2` FOREIGN KEY (`IDDeasPest`) REFERENCES `DeasPestValT`(``);
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk2` FOREIGN KEY (`HiveStateT`) REFERENCES `HiveStateT`(`IDHiveState`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk3` FOREIGN KEY (`ColStrengthT`) REFERENCES `ColStrengthT`(`IDColStrength`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk4` FOREIGN KEY (`HiveTemperT`) REFERENCES `HiveTemperT`(`IDHiveTemper`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk5` FOREIGN KEY (`IDCombsCond`) REFERENCES `CombsCond`(`IDCombsCond`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk6` FOREIGN KEY (`IDDeasPest`) REFERENCES `DeasPestValT`(`IDDeasPestVal`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk7` FOREIGN KEY (`HiveCondT`) REFERENCES `HiveCondT`(`IDHiveCond`);
+
+ALTER TABLE `Inspection` ADD CONSTRAINT `Inspection_fk8` FOREIGN KEY (`BeeToolsCondT`) REFERENCES `BeeToolsCondT`(`IDBeeToolsCond`);
+
+ALTER TABLE `CombsCond` ADD CONSTRAINT `CombsCond_fk0` FOREIGN KEY (`HoneyStoresT`) REFERENCES `StoresT`(`IDStores`);
+
+ALTER TABLE `CombsCond` ADD CONSTRAINT `CombsCond_fk1` FOREIGN KEY (`PollenStoresT`) REFERENCES `StoresT`(`IDStores`);
+
+ALTER TABLE `DeasPest` ADD CONSTRAINT `DeasPest_fk0` FOREIGN KEY (`SmallBeeT`) REFERENCES `DeasPestValT`(`IDDeasPestVal`);
+
+ALTER TABLE `DeasPest` ADD CONSTRAINT `DeasPest_fk1` FOREIGN KEY (`VarraoT`) REFERENCES `DeasPestValT`(`IDDeasPestVal`);
+
+ALTER TABLE `User` ADD CONSTRAINT `User_fk0` FOREIGN KEY (`UserRoleT`) REFERENCES `UserRoleT`(`IDUserRole`);
+
+ALTER TABLE `OwnedApiary` ADD CONSTRAINT `OwnedApiary_fk0` FOREIGN KEY (`IDUser`) REFERENCES `User`(`IDUser`);
+
+ALTER TABLE `OwnedApiary` ADD CONSTRAINT `OwnedApiary_fk1` FOREIGN KEY (`IDApiary`) REFERENCES `Apiary`(`IDApiary`);
+
+ALTER TABLE `OwnedHive` ADD CONSTRAINT `OwnedHive_fk0` FOREIGN KEY (`IDUser`) REFERENCES `User`(`IDUser`);
+
+ALTER TABLE `OwnedHive` ADD CONSTRAINT `OwnedHive_fk1` FOREIGN KEY (`IDHive`) REFERENCES `Hive`(`IDHive`);
 
