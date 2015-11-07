@@ -7,11 +7,8 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
         function(data) {
-            info = data;
-        }, JSON)
-        .fail(function() {
-            alert("Error reading from api/user/" + userID);
-        }
+            info = data.responseText;
+        }, JSON
     );
 
     $("#info_table").html(generateInfo(info));
