@@ -111,7 +111,7 @@ public class RunForm extends FragmentActivity {
             submitBtn.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i(tag, "Form submitted");
+                    persistData();
                 }
             });
 
@@ -123,6 +123,9 @@ public class RunForm extends FragmentActivity {
             Log.e(tag, "Display error");
             return false;
         }
+    }
+
+    private void persistData() {
     }
 
     private boolean getFormData(String formNumber) {
