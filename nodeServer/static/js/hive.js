@@ -9,7 +9,7 @@ $(document).ready(function(){
     hiveID = hiveID.split("=")[1];
     var info = {};
 
-    $.get("/api/hive/" + hiveID,
+    $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
             info = data;
         }, JSON)

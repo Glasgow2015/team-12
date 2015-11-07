@@ -5,7 +5,7 @@ $(document).ready(function(){
     userID = userID.split("=")[1];
     var info = {};
 
-    $.get("/api/user/" + userID,
+    $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
         function(data) {
             info = data;
         }, JSON)

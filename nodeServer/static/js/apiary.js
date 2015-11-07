@@ -9,7 +9,7 @@ $(document).ready(function(){
     apiaryID = apiaryID.split("=")[1];
     var info = {};
 
-    $.get("/api/apiary/" + apiaryID,
+    $.get("http://fbwu.rob4001.co.uk/api/apiary/" + apiaryID,
         function(data) {
             info = data;
         }, JSON)
