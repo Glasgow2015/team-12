@@ -47,6 +47,18 @@ router.post('/hive/:id', function(req,res){
   //TODO: Update Hive
 })
 
+
+router.get('/apiary', function(req,res){
+
+
+pool.query('SELECT * FROM Apiary', function(err, rows, fields) {
+  if (err) console.log(err  );
+  res.json(rows);
+});
+
+
+})
+
 //TODO Make recreate Hive methods for Aparies, Inspections and Harvests
 
 module.exports = router;
