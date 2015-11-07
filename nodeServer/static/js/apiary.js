@@ -57,7 +57,7 @@ function generateData(hives, apiaryID) {
 
     data.forEach(function(hive) {
         html += "<tr class=\"data_row\">"
-                + "<td><a href=\"hives.html?id=" + hive.IDHive + "\">" + hive.HiveNumber + "</a></td>"
+                + "<td><a href=\"hive.html?id=" + hive.IDHive + "\">" + hive.HiveNumber + "</a></td>"
                 + "<td>" + hive.GPS + "</td>"
                 + "<td>" + hive.DateCreated + "</td>"
                 + "<td>" + hive.HiveType + "</td>"
