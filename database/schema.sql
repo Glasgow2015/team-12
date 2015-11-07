@@ -181,6 +181,8 @@ CREATE TABLE `User` (
 	`Login` varchar(30) NOT NULL,
 	`Password` varchar(30) NOT NULL,
 	`UserRoleT` int(11) NOT NULL,
+	`Email` varchar(30),
+	`Phone` varchar(30),
 	PRIMARY KEY (`IDUser`)
 );
 
