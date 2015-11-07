@@ -26,6 +26,7 @@
     "mysql": "^2.9.0",
     "node-guid": "0.0.3",
     "nodemailer": "^1.8.0",
-    "nodemailer-smtp-transport": "^1.0.4"
+    "nodemailer-smtp-transport": "^1.0.4",
+    "twilio": "^2.5.2"
   }
 }

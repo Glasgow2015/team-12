@@ -31,7 +31,7 @@ router.post('/hive', function(req,res){
   connection.connect();
 
 connection.query('SELECT * FROM Hive', function(err, rows, fields) {
-  if (err) console.log(err);
+  if (err) console.log(err  );
   res.json(rows);
 });
 

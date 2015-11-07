@@ -9,7 +9,11 @@ app.use(express.static('static'));
 
 // send requests to API handler
 var api = require("./app/api.js");
-app.use("/api",api);  
+app.use("/api",api);
+
+// send requests to Twilio handler
+var twilio = require("./app/twilio.js");
+app.use("/twilio",twilio);
 
 var server = app.listen(8080, function () {
   var host = server.address().address;
