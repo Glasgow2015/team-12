@@ -6,7 +6,7 @@ var twilio = require('twilio');
 
 router.post('/', function(req,res){
   var twiml = new twilio.TwimlResponse();
-   twiml.message(req.params.Body);
+   twiml.message(req.body.Body);
    console.log("SMS Received:" + req.body.Body);
    console.log(JSON.stringify(req.body));
 

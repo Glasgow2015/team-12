@@ -1,7 +1,7 @@
 {
   "dbConfig":{
     "host": "localhost",
-
+    "connectionLimit" : 10,
     "database": "fbwu"
   }
 }

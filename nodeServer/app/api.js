@@ -5,7 +5,7 @@ var router = express.Router();
 var config = require('config');
 
 var mysql      = require('mysql');
-var connection = mysql.createConnection(config.get('dbConfig'));
+var pool = mysql.createPool(config.get('dbConfig'));
 
 router.use(function timeLog(req, res, next) {
   console.log('API Used Time: ', Date.now());
@@ -17,25 +17,25 @@ router.get('/', function(req, res) {
 });
 
 router.get('/hive/:id', function(req, res) {
-  connection.connect();
 
-connection.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+
+pool.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
   if (err) console.log(err);
   res.json(rows);
 });
 
-connection.end();
+
 });
 
 router.post('/hive', function(req,res){
-  connection.connect();
 
-connection.query('SELECT * FROM Hive', function(err, rows, fields) {
+
+pool.query('SELECT * FROM Hive', function(err, rows, fields) {
   if (err) console.log(err  );
   res.json(rows);
 });
 
-connection.end();
+
 })
 
 router.post('/hive/:id', function(req,res){
