@@ -27,13 +27,18 @@ pool.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], functi
 
 });
 
-router.post('/hive', function(req,res){
+router.get('/hive', function(req,res){
 
 
 pool.query('SELECT * FROM Hive', function(err, rows, fields) {
   if (err) console.log(err  );
   res.json(rows);
 });
+
+
+})
+
+router.post('/hive', function(req,res){
 
 
 })
