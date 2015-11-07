@@ -30,7 +30,7 @@ router.get('/hive', function(req,res){
 
 pool.query('SELECT * FROM Hive', function(err, rows, fields) {
   if (err) console.log(err  );
-  res.json(rows);
+  res.json(rows[0]);
 });
 
 

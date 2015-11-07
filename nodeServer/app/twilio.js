@@ -18,9 +18,10 @@ router.post('/', function(req,res){
       default: console.log("Didnt work");
   }
 
-   twiml.message(req.body.Body);
+   //twiml.message(req.body.Body);
    console.log("SMS Received:" + req.body.Body);
    console.log(JSON.stringify(req.body));
+   console.log(twiml.toString());
 
    res.writeHead(200, {'Content-Type': 'text/xml'});
    res.end(twiml.toString());
@@ -29,7 +30,7 @@ router.post('/', function(req,res){
 function executeInspection(commands,twiml){
    switch (commands[0]) {
      case "new": twiml.message("Im gonna make a new inspection with the rest" + commands.shift().join());
-
+     console.log("WORKED!");
 
        break;
      default:
