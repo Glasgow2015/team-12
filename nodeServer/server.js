@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
+var bodyparser = require ('body-parser');
 
-
+app.use(bodyparser.json()); // for parsing application/json
+app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // serve static files
 app.use(express.static('static'));

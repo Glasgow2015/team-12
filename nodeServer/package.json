@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Glasgow2015/team-12#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "config": "^1.16.0",
     "express": "^4.13.3",
     "mysql": "^2.9.0",
