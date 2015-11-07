@@ -87,7 +87,7 @@ router.post('/user',function(req,res){
     if(err) console.log(err);
     console.log(rows);
     var prepared = [req.body.name,req.body.username,req.body.password,rows[0].IDUserRole,req.body.email,req.body.phone];
-    pool.query('CALL CreateUser(?,?,?,?,?,?,0,"")',prepared,function(err,rows,fields){
+    pool.query('CALL CreateUser(?,?,?,?,?,?,@temp,@temp2)',prepared,function(err,rows,fields){
       if(err) console.log(err);
     });
   });
