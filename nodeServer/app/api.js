@@ -83,10 +83,10 @@ router.post('/user',function(req,res){
 
   //TODO: Validate User params
 
-  poll.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
+  pool.query('SELECT * FROM UserRoleT where NameType = ? LIMIT 1',[req.body.role],function(err, rows, fields){
     if(err) console.log(err);
     var prepared = [req.body.name,req.body.username,req.body.password,rows[0].IDUserRole,req.body.email,req.body.phone];
-    poll.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
+    pool.query('CALL CreateUser(?,?,?,?,?,?)',prepared,function(err,rows,fields){
       if(err) console.log(err);
     });
   });
