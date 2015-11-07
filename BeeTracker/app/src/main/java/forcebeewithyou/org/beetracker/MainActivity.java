@@ -17,6 +17,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NetSync sync = new NetSync();
+
+        sync.start();
+
         setContentView(R.layout.activity_main);
 
         Button inspectBtn = (Button) this.findViewById(R.id.inspect_new_btn);
@@ -28,6 +32,20 @@ public class MainActivity extends ActionBarActivity {
                 Intent newFormInfo = new Intent(MainActivity.this, RunForm.class);
                 Log.i(tag, "Attempting to parse form...");
                 newFormInfo.putExtra("formNumber", "1");
+
+                startActivity(newFormInfo);
+            }
+        });
+
+        Button harvestBtn = (Button) this.findViewById(R.id.harvest_new_btn);
+
+        harvestBtn.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent newFormInfo = new Intent(MainActivity.this, RunForm.class);
+                Log.i(tag, "Attempting to parse form...");
+                newFormInfo.putExtra("formNumber", "2");
 
                 startActivity(newFormInfo);
             }

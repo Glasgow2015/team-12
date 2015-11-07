@@ -28,6 +28,7 @@ import java.util.logging.Handler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * Created by Gergely on 2015.11.07..
  */
@@ -126,6 +127,7 @@ public class RunForm extends FragmentActivity {
     }
 
     private void persistData() {
+        newForm.persistForm(this);
     }
 
     private boolean getFormData(String formNumber) {
@@ -143,12 +145,26 @@ public class RunForm extends FragmentActivity {
 
             NodeList forms = root.getElementsByTagName("form");
 
-            if(forms.getLength() < 1){
+            if (forms.getLength() < 1) {
                 Log.e(tag, "No forms in XML file");
                 return false;
             }
 
-            Node form = forms.item(0);
+            Node form = null;
+
+            for (int i = 0; i < forms.getLength(); i++) {
+                NamedNodeMap attr = forms.item(i).getAttributes();
+
+                if (attr.getNamedItem("id").getNodeValue().equals(formNumber)) {
+                    form = forms.item(i);
+                    break;
+                }
+            }
+            //if the form was not found
+            if (form == null) {
+                Log.e(tag, "No associated forms");
+                return false;
+            }
 
             newForm = new XmlForm();
 
@@ -156,20 +172,22 @@ public class RunForm extends FragmentActivity {
             newForm.setFormName(map.getNamedItem("name").getNodeValue());
             newForm.setFormNo(map.getNamedItem("id").getNodeValue());
 
-            NodeList fields = root.getElementsByTagName("field");
+            NodeList fields = form.getChildNodes();
 
             for (int i = 0; i < fields.getLength(); i++) {
-                Node fieldNode = fields.item(i);
-                NamedNodeMap attr = fieldNode.getAttributes();
+                if (fields.item(i).getNodeName().equals("field")) {
+                    Node fieldNode = fields.item(i);
+                    NamedNodeMap attr = fieldNode.getAttributes();
 
-                XmlFormField tempField = new XmlFormField();
+                    XmlFormField tempField = new XmlFormField();
 
-                tempField.setName(attr.getNamedItem("name").getNodeValue());
-                tempField.setLabel(attr.getNamedItem("label").getNodeValue());
-                tempField.setType(attr.getNamedItem("type").getNodeValue());
-                tempField.setOptions(attr.getNamedItem("options").getNodeValue());
+                    tempField.setName(attr.getNamedItem("name").getNodeValue());
+                    tempField.setLabel(attr.getNamedItem("label").getNodeValue());
+                    tempField.setType(attr.getNamedItem("type").getNodeValue());
+                    tempField.setOptions(attr.getNamedItem("options").getNodeValue());
 
-                newForm.getFields().add(tempField);
+                    newForm.getFields().add(tempField);
+                }
             }
 
             return true;
