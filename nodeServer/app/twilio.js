@@ -10,9 +10,12 @@ router.post('/', function(req,res){
 
   var request = req.body.Body;
   var commands = request.split(" ");
+  console.log(commands);
   switch (commands[0]){
     case "inspection":
       executeInspection(commands.shift(),twiml);
+      break;
+      default: console.log("Didnt work");
   }
 
    twiml.message(req.body.Body);
