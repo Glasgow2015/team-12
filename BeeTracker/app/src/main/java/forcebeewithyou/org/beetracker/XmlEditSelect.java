@@ -35,7 +35,12 @@ public class XmlEditSelect extends LinearLayout {
         this.addView(spinner);
     }
 
-    public String getValue(){
-        return (String) spinner.getSelectedItem().toString();
+    public int getValue(){
+        return spinner.getSelectedItemPosition();
+    }
+
+    @Override
+    public String toString() {
+        return "" + getValue();
     }
 }

@@ -107,4 +107,9 @@ public class XmlEditDate extends LinearLayout {
         this.day = day;
         showDialogBtn.setText(new StringBuilder().append(day).append("/").append(month+1).append("/").append(year));
     }
+
+    @Override
+    public String toString() {
+        return day + "-" + (month+1) + "-" + year;
+    }
 }

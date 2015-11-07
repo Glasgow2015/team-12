@@ -9,18 +9,15 @@ $(document).ready(function(){
     hiveID = hiveID.split("=")[1];
     var info = {};
 
-    $.get("/api/hive/" + hiveID,
+    $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
-            info = data;
-        }, JSON)
-        .fail(function() {
-            alert("Error reading from api/hive/" + hiveID);
-        }
+            info = data.responseText;
+        }, JSON
     );
 
     $("#info_table").html(generateInfo(info));
 
-    var inspections = {};
+    var inspections = [];
 
     $.get("api/inspection", function (data) {
         inspections = data;
@@ -28,7 +25,7 @@ $(document).ready(function(){
 
     $("#inspections").html(generateInspections(inspections, hiveID));
 
-    var harvests = {};
+    var harvests = [];
 
     $.get("api/harvest", function (data) {
         harvests = data;

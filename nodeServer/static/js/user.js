@@ -5,18 +5,15 @@ $(document).ready(function(){
     userID = userID.split("=")[1];
     var info = {};
 
-    $.get("/api/user/" + userID,
+    $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
         function(data) {
-            info = data;
-        }, JSON)
-        .fail(function() {
-            alert("Error reading from api/user/" + userID);
-        }
+            info = data.responseText;
+        }, JSON
     );
 
     $("#info_table").html(generateInfo(info));
 
-    var apiaries = {};
+    var apiaries = [];
 
     $.get("api/apiary", function (data) {
         apiaries = data;

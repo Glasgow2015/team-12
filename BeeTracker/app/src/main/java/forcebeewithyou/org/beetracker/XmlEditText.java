@@ -47,5 +47,8 @@ public class XmlEditText extends LinearLayout{
         input.setText(v);
     }
 
-
+    @Override
+    public String toString() {
+        return getValue();
+    }
 }

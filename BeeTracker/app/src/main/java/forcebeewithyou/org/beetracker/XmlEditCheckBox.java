@@ -30,4 +30,9 @@ public class XmlEditCheckBox extends LinearLayout {
     public boolean getValue(){
         return checkBox.isChecked();
     }
+
+    @Override
+    public String toString() {
+        return ""+getValue();
+    }
 }

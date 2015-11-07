@@ -1,19 +1,27 @@
 <forms>
-    <form label="Inspection" name="insp" id="1">
-        <field type="number" label="Hive Number" name="hive_no" options="" />
-        <field type="date" label="Inspection Date" name="insp_date" options="" />
-        <field type="select" label="Weather Conditions" name="weath_cond" options="Sunny|Partly Cloudy|Cloudy|Rain|Windy" />
-        <field type="select" label="State of hive" name="hive_state" options="Not in use/not installed|Not yet occupied|Occupied|Absconded|Dead, because of robbing|Dead, because of honey badger|Dead, because of mites|Dead, because of beetle|Dead, because of ants or other insects|Dead, because of fire|Dead, because of flood|Dead, reason unknown" />
-        <field type="select" label="Strength of the colony" name="colony_str" options="Strong|Moderate|Weak|Critical" />
-        <field type="select" label="Temper of the hive" name="hive_temper" options="Calm|Nervous|Angry" />
-        <field type="checkbox" label="Queen cells in brood combs" name="queen_cells" options="" />
-        <field type="select" label="Honey Stores" name="honey_store" options="High|Average|Low" />
-        <field type="select" label="Pollen Stores" name="pollen_store" options="High|Average|Low" />
-        <field type="select" label="Small Hive Beetle" name="small_hive_beetle" options="Light|Moderate|Heavy" />
-        <field type="select" label="Varrao Mites" name="varrao_mite" options="Light|Moderate|Heavy" />
-        <field type="checkbox" label="Safari Ants" name="safari_ants" options="" />
-        <field type="checkbox" label="Chalk Brood" name="chalk_brood" options="" />
-        <field type="select" label="Hive Condition" name="hive_cond" options="Good|Fair|Poor|Damaged" />
-        <field type="select" label="Protective Clothing and Tools Contition" name="equip_cond" options="Good|Fair|Poor|Damaged" />
+    <form label="Inspection" name="inspection" id="1">
+        <field type="number" label="Hive Number" name="IDHive" options="" />
+        <field type="date" label="Inspection Date" name="DateInspection" options="" />
+        <field type="select" label="Weather Conditions" name="WeatherCondT" options="Sunny|Partly Cloudy|Cloudy|Rain|Windy" />
+        <field type="select" label="State of hive" name="HiveStateT" options="Not in use/not installed|Not yet occupied|Occupied|Absconded|Dead, because of robbing|Dead, because of honey badger|Dead, because of mites|Dead, because of beetle|Dead, because of ants or other insects|Dead, because of fire|Dead, because of flood|Dead, reason unknown" />
+        <field type="select" label="Strength of the colony" name="ColStrengthT" options="Strong|Moderate|Weak|Critical" />
+        <field type="select" label="Temper of the hive" name="HiveTemper" options="Calm|Nervous|Angry" />
+        <field type="checkbox" label="Queen cells in brood combs" name="QueenCellInBrood" options="" />
+        <field type="select" label="Honey Stores" name="HoneyStoresT" options="High|Average|Low" />
+        <field type="select" label="Pollen Stores" name="PollenStoresT" options="High|Average|Low" />
+        <field type="select" label="Small Hive Beetle" name="SmallBeeT" options="Light|Moderate|Heavy" />
+        <field type="select" label="Varrao Mites" name="VarraoT" options="Light|Moderate|Heavy" />
+        <field type="checkbox" label="Safari Ants" name="Ant" options="" />
+        <field type="checkbox" label="Chalk Brood" name="Brood" options="" />
+        <field type="select" label="Hive Condition" name="HiveCondT" options="Good|Fair|Poor|Damaged" />
+        <field type="select" label="Protective Clothing and Tools Contition" name="BeeToolsCondT" options="Good|Fair|Poor|Damaged" />
+    </form>
+    <form label="Harvest" name="harvest" id="2">
+        <field type="date" label="Harvest Date" name="DateHarvest" options="" />
+        <field type="number" label="Number of RIPE combs harvested" name="Quantity" options="" />
+        <field type="checkbox" label="Protective clothing available for beekeeper" name="BeeKeeperClothes" options="" />
+        <field type="checkbox" label="Protective clothing available for all assistants" name="AllAssistantTools" options="" />
+        <field type="checkbox" label="Smoker available" name="Smoker" options="" />
+        <field type="number" label="Number of clean, airtight buckets available for harvest" name="BucketNumber" options="" />
     </form>
 </forms>

@@ -9,18 +9,15 @@ $(document).ready(function(){
     apiaryID = apiaryID.split("=")[1];
     var info = {};
 
-    $.get("/api/apiary/" + apiaryID,
+    $.get("http://fbwu.rob4001.co.uk/api/apiary/" + apiaryID,
         function(data) {
-            info = data;
-        }, JSON)
-        .fail(function() {
-            alert("Error reading from api/apiary/" + apiaryID);
-        }
+            info = data.responseText;
+        }, JSON
     );
 
     $("#info_table").html(generateInfo(info));
 
-    var hives = {};
+    var hives = [];
 
     $.get("api/hive", function (data) {
         hives = data;
