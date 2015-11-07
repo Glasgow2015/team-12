@@ -28,6 +28,7 @@ router.post('/', function(req,res){
 })
 
 function executeInspection(commands,twiml){
+  console.log(commands);
    switch (commands[0]) {
      case "new": twiml.message("Im gonna make a new inspection with the rest" + commands.shift().join());
      console.log("WORKED!");
