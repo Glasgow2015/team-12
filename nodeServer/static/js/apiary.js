@@ -27,6 +27,11 @@ $(document).ready(function(){
 
 });
 
+function parseGPS(GPS) {
+    var parts = GPS.split("|");
+    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
+};
+
 function generateData(hives, apiaryID) {
     if (hives === undefined) {
         return "<p>" + l("No hives in this apiary") + ".</p>"
@@ -56,7 +61,7 @@ function generateData(hives, apiaryID) {
     data.forEach(function(hive) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"hive.html?id=" + hive.IDHive + "\">" + hive.HiveNumber + "</a></td>"
-                + "<td>" + hive.GPS + "</td>"
+                + "<td>" + parseGPS(hive.GPS) + "</td>"
                 + "<td>" + hive.DateCreated + "</td>"
                 + "<td>" + hive.HiveType + "</td>"
                 + "<td>" + l(hive.SunExp) + "</td>"
@@ -80,7 +85,7 @@ function generateInfo(data) {
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("GPS Location") + "</td>"
-                + "<td>" + data.GPS + "</td>"
+                + "<td>" + parseGPS(data.GPS) + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Year of commencing apiary") + "</td>"

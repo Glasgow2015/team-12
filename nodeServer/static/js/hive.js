@@ -121,7 +121,7 @@ function generateInfo(data) {
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>GPS location</td>"
-            + "<td>" + data.GPS + "</td>"
+            + "<td>" + parseGPS(data.GPS) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>Date of installation</td>"
@@ -139,4 +139,9 @@ function generateInfo(data) {
         + "</div>";
 
     return html;
+};
+
+function parseGPS(GPS) {
+    var parts = GPS.split("|");
+    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
 };

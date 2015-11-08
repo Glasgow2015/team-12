@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var twilio = require('twilio');
-var data = require('../lib/database.js')
+var pool = require('../lib/database.js')
 
 router.post('/', function(req,res){
   var twiml = new twilio.TwimlResponse();
@@ -31,8 +31,11 @@ function executeInspection(commands,twiml){
   console.log(commands);
    switch (commands.shift()) {
      case "new": twiml.message("Im gonna make a new inspection with the rest " + commands.join(" "));
-     console.log("WORKED!");
-
+     var prepared = JSON.parse(commands.join(" "));
+     pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
+       if (err) console.log(err);
+       twiml.message("It Succeeded :D");
+     });
        break;
      default:
 
