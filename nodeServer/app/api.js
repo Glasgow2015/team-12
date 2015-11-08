@@ -66,8 +66,14 @@ pool.query('SELECT * FROM Apiary WHERE IDApiary = ? LIMIT 1',req.params.id, func
 
 router.post('/apiary', function(req,res){
 
-var prepared = [req.body.name,req.body.lat,req.body.long,req.body.datecreated,harvmonth,environment,access];
-pool.query('CALL CreateApiary(?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+//var prepared = [req.body.name,req.body.lat,req.body.long,req.body.datecreated,harvmonth,environment,access];
+pool.query('CALL CreateApiary("Rob",
+								1,
+                                1,
+                                1,
+                                "1,1,1,1,1,1,1,1,1,1,1,1",
+                                "1,1,1,1,1,1,1,1,1",
+                                "1,1,1,1,1,1,1,1")',function(err,rows,fields){
 
 });
 })
