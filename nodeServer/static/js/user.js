@@ -10,13 +10,11 @@ $(document).ready(function(){
         }
     );
 
-    var apiaries = [];
-
-    $.get("api/apiary", function (data) {
-        apiaries = data;
-    });
-
-    $("#data_table").html(generateData(apiaries, userID));
+    $.get("api/apiary",
+        function (data) {
+            $("#data_table").html(generateData(data, userID));
+        }
+    );
 
 });
 
@@ -25,7 +23,7 @@ function generateInfo(data) {
         return "There are no users available with this ID.";
     }
 
-    var html = "<table id=\"info\">" +
+    var html = "<table id=\"info\">"
         + "<tr class=\"info_row\">"
             + "<td>E-mail</td>"
             + "<td>" + data.Email + "</td>"
@@ -61,12 +59,13 @@ function generateData(apiaries, userID) {
     }
 
     var html;
-    html = "<table id=\"data\">\n    " +
+    html = "<div id=\"table_title\">Apiaries</div>" +
+        "<table id=\"data\">\n    " +
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
-        "<th>Name</th>\n        " +
-        "<th>Location</th>\n        " +
-        "<th>No of hives</th>\n        " +
-        "<th>No of sponsors</th>\n    " +
+            "<th>Name</th>\n        " +
+            "<th>Location</th>\n        " +
+            "<th>No of hives</th>\n        " +
+            "<th>No of sponsors</th>\n    " +
         "</tr>";
 
     data.forEach(function(apiary) {

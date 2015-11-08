@@ -14,21 +14,18 @@ $(document).ready(function(){
         }
     );
 
-    var inspections = [];
+   $.get("api/inspection",
+       function (data) {
+           $("#inspections").html(generateInspections(data, hiveID));
+        }
+   );
 
-    $.get("api/inspection", function (data) {
-        inspections = data;
-    });
+    $.get("api/harvest",
+        function (data) {
+            $("#harvests").html(generateHarvests(data, hiveID));
+        }
+    );
 
-    $("#inspections").html(generateInspections(inspections, hiveID));
-
-    var harvests = [];
-
-    $.get("api/harvest", function (data) {
-        harvests = data;
-    });
-
-    $("#harvests").html(generateHarvests(harvests, hiveID));
 
 });
 

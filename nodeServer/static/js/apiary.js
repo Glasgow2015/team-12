@@ -14,13 +14,11 @@ $(document).ready(function(){
         }
     );
 
-    var hives = [];
-
-    $.get("api/hive", function (data) {
-        hives = data;
-    });
-
-    $("#data_table").html(generateData(hives, apiaryID));
+    $.get("api/hive",
+        function (data) {
+            $("#data_table").html(generateData(data, apiaryID));
+        }
+    );
 
 });
 
