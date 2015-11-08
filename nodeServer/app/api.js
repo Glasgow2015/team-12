@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 router.get('/hive/:id', function(req, res) {
 
 
-  pool.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1', [req.params.id], function(err, rows, fields) {
+  pool.query('SELECT * FROM HiveView WHERE IDHive = ? LIMIT 1', [req.params.id], function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
@@ -28,7 +28,7 @@ router.get('/hive/:id', function(req, res) {
 router.get('/hive', function(req, res) {
 
 
-  pool.query('SELECT * FROM Hive', function(err, rows, fields) {
+  pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows);
   });
@@ -59,7 +59,7 @@ router.get('/apiary', function(req, res) {
 
 router.get('/apiary/:id', function(req, res) {
 
-  pool.query('SELECT * FROM Apiary WHERE IDApiary = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+  pool.query('SELECT * FROM ApiaryView WHERE IDApiary = ? LIMIT 1', req.params.id, function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
@@ -84,7 +84,7 @@ router.post('/apiary', function(req, res) {
 router.get('/inspection', function(req, res) {
 
 
-  pool.query('SELECT * FROM Inspection', function(err, rows, fields) {
+  pool.query('SELECT * FROM InspectionView', function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows);
   });
@@ -94,7 +94,7 @@ router.get('/inspection', function(req, res) {
 
 router.get('/inspection/:id', function(req, res) {
 
-  pool.query('SELECT * FROM Inspection WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+  pool.query('SELECT * FROM InspectionView WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
@@ -145,7 +145,7 @@ router.post('/inspection', function(req, res) {
 router.get('/harvest', function(req, res) {
 
 
-  pool.query('SELECT * FROM Harvest', function(err, rows, fields) {
+  pool.query('SELECT * FROM HarvesView', function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows);
   });
@@ -155,7 +155,7 @@ router.get('/harvest', function(req, res) {
 
 router.get('/harvest/:id', function(req, res) {
 
-  pool.query('SELECT * FROM Harvest WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+  pool.query('SELECT * FROM HarvesView WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
@@ -201,5 +201,14 @@ router.get('/user', function(req, res) {
 
 })
 
+router.get('/user/:id', function(req, res) {
+
+
+  pool.query('SELECT * FROM User WHERE IDUser = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+    if (err) console.log(err);
+    res.json(rows);
+  });
+
+})
 
 module.exports = router;
