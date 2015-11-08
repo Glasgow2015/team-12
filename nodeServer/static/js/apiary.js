@@ -62,7 +62,6 @@ function generateData(hives, apiaryID) {
 };
 
 function generateInfo(data) {
-    alert(data);
     if ($.isEmptyObject(data)) {
         return "This apiary does not exist."
     }
