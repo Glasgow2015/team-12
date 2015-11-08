@@ -4,6 +4,8 @@ var bodyparser = require ('body-parser');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var pool = require('./lib/database.js');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 app.use(bodyparser.json()); // for parsing application/json
 app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -16,8 +18,8 @@ String.prototype.capitalize = function() {
 // serve static files
 app.use(express.static('static'));
 
-app.use(express.session({ secret: 'keyboard cat' }));
-app.use(express.cookieParser());
+app.use(session({ secret: 'keyboard cat' }));
+app.use(cookieParser());
 
 // passport
 passport.use(new LocalStrategy(
