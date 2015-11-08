@@ -49,7 +49,7 @@ function generateData(apiaries, userID) {
 
     var data = [];
     apiaries.forEach(function(apiary) {
-        if (apiary.IDUser === userID) {
+        if (apiary.IDUser == userID) {
             data.push(apiary);
         }
     });
