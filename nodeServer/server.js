@@ -18,7 +18,9 @@ String.prototype.capitalize = function() {
 // serve static files
 app.use(express.static('static'));
 
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat',
+                  resave: false,
+                  saveUninitialized: false}));
 app.use(cookieParser());
 
 // passport
@@ -40,6 +42,12 @@ passport.use(new LocalStrategy(
 
 app.use(passport.initialize());
 app.use(passport.session())
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: false })
+);
 
 
 // send requests to API handler
