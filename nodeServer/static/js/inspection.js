@@ -34,7 +34,7 @@ function generateInfo(inspection) {
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Date") + "</td>"
-            + "<td>" + inspection.DateInspection + "</td>"
+            + "<td>" + parseTime(inspection.DateInspection) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Weather conditions") + "</td>"
@@ -92,3 +92,7 @@ function generateInfo(inspection) {
 function l(string) {
     return string.toLocaleString();
 };
+
+function parseTime(time) {
+    return time.split("T")[0];
+}
