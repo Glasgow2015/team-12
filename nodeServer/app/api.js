@@ -74,9 +74,9 @@ router.post('/inspection', function(req, res) {
   }
 
   console.log(req.body);
-  var prepared = [req.body.IDHive, req.body.DateInspection, (req.body.WeatherCondT+1), (req.body.HiveStateT+1), (req.body.ColStrengthT+1), req.body.HiveTemper, req.body.QueenCellInBrood,
+  var prepared = [req.body.IDHive, req.body.DateInspection, (req.body.WeatherCondT+1), (req.body.HiveStateT+1), (req.body.ColStrengthT+1), (req.body.HiveTemper+1), req.body.QueenCellInBrood,
      (req.body.HoneyStoresT+1)+","+(  req.body.PollenStoresT+1), (req.body.SmallBeeT+1)+","+(req.body.VarraoT+1)+","+req.body.Ant+","+req.body.Brood, (req.body.HiveCondT+1), (req.body.BeeToolsCondT+1)];
-  console.log(prepared);
+  console.log(prepared);+1)
   pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
     console.log("Stuff happened");
     if (err) console.log(err);
