@@ -5,7 +5,8 @@ $(document).ready(function(){
     }
 
     var loc = window.location.href;
-    var userID = loc.split("?")[1];
+    var userID = loc.split("#")[0];
+    userID = userID.split("?")[1];
     userID = userID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
@@ -14,7 +15,7 @@ $(document).ready(function(){
         }
     );
 
-    $.get("http://fbwu.rob4001.co.uk/api/apiary",
+    $.get("http://fbwu.rob4001.co.uk/api/ownedApiary",
         function (data) {
             $("#data_table").html(generateData(data, userID));
         }
@@ -24,17 +25,17 @@ $(document).ready(function(){
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "<p>There are no users available with this ID.</p>";
+        return "<p>" + l("There are no users available with this ID") + ".</p>";
     }
 
     var html = "<h2>" + data.UserRole + " - " + data.NameUser + "</h2>"
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
-            + "<td>E-mail</td>"
+            + "<td>" + l("E-mail") + "</td>"
             + "<td>" + data.Email + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Phone</td>"
+            + "<td>" + l("Phone") + "</td>"
             + "<td>" + data.Phone + "</td>"
         + "</tr>"
         + "</table>";
@@ -44,7 +45,7 @@ function generateInfo(data) {
 
 function generateData(apiaries, userID) {
     if (apiaries.length === undefined) {
-        return "<p>No apiaries found.</p>"
+        return "<p>" + l("No apiaries found") + ".</p>"
     }
 
     var data = [];
@@ -55,17 +56,17 @@ function generateData(apiaries, userID) {
     });
 
     if (data.length === 0) {
-        return "<p>No apiaries found.</p>"
+        return "<p>" + l("No apiaries found") + ".</p>"
     }
 
     var html;
-    html = "<h3 id=\"table_title\">Apiaries</h3>" +
+    html = "<h3 id=\"table_title\">" + l("Apiaries") + "</h3>" +
         "<table id=\"data\" class=\"table table-striped\">\n    " +
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
-            "<th>Name</th>\n        " +
-            "<th>Location</th>\n        " +
-            "<th>Year commencing apiary</th>\n        " +
-            "<th>Harvesting months</th>\n    " +
+            "<th>" + l("Name") + "</th>\n        " +
+            "<th>" + l("Location") + "</th>\n        " +
+            "<th>" + l("Year commencing apiary") + "</th>\n        " +
+            "<th>" + l("Harvesting months") + "</th>\n    " +
         "</tr>";
 
     data.forEach(function(apiary) {
@@ -83,5 +84,9 @@ function generateData(apiaries, userID) {
 
 function parseGPS(GPS) {
     var parts = GPS.split("|");
-    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
+    return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
+};
+
+function l(string) {
+    return string.toLocaleString();
 };

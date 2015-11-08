@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>Dashboard - Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Bootstrap -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -11,8 +11,11 @@
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
     <style type="text/css">
       #mapDiv {
-        height: 100%; 
-        width: auto; 
+        padding: 10px;
+      }
+      nav {
+        margin: 0;
+        padding: 0;
       }
     </style>
 
@@ -23,14 +26,21 @@
     <![endif]-->
   </head>
   <body>
-    
 
-    <!-- Step 2. Add HTML to define the layout of the page and the map -->
-    <div class="container">
+    <div id="header">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Force Bee w/ U</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container" width="100%" height= "100%">
       <div id="mapDiv"></div>
     </div>
     
-    <!-- Step 3. Add JS to load the responsive map -->
     <script type="text/javascript">
         var package_path = "//esri.github.com/bootstrap-map-js/src/js";
         var dojoConfig = {
@@ -47,8 +57,8 @@
             // Get a reference to the ArcGIS Map class
             var map = BootstrapMap.create("mapDiv",{
               basemap:"dark-gray",
-              center:[-122.45,37.77],
-              zoom:12
+              center:[35.14, -6.10],
+              zoom:6
             });
         });
     </script>
