@@ -559,3 +559,6 @@ WHERE
     COMMIT;
 END$$
 DELIMITER ;
+
+
+select PictureName from Hive
