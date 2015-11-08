@@ -50,15 +50,15 @@ function generateHarvests(harvests, hiveID) {
         + '<tr class="data_row">'
             + '<th>Date</th>'
             + '<th>Quantity</th>'
-            + '<th>Protective clothing available for beekeeper</th>'
-            + '<th>Protective clothing available for all assistants</th>'
+            + '<th>Protective clothing (beekeeper)</th>'
+            + '<th>Protective clothing (assistants)</th>'
             + '<th>Smoker available</th>'
             + '<th>Number of buckets available</th>'
         + '</tr>';
 
     data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
-                + "<td><a href='harvest.html/id=" + harvest.IDHarvest + "'>" + harvest.DateHarvest + "</a></td>"
+                + "<td><a href='../harvest.html?id=" + harvest.IDHarvest + "'>" + harvest.DateHarvest + "</a></td>"
                 + "<td>" + harvest.Quantity + "</td>"
                 + "<td>" + harvest.BeeKeeperClothes + "</td>"
                 + "<td>" + harvest.AllAssistantTools + "</td>"
@@ -97,7 +97,7 @@ function generateInspections(inspections, hiveID) {
 
     data.forEach(function(inspection) {
         html += "<tr class=\"data_row\">"
-            + "<td>" + inspection.DateInspection + "</td>"
+            + "<td><a href='../inspection.html?id=" + inspection.IDInspection + "'>" + inspection.DateInspection + "</a></td>"
             + "<td>" + inspection.WeatherCond + "</td>"
             + "<td>" + inspection.HiveState + "</td>"
             + "</tr>";
