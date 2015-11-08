@@ -24,6 +24,12 @@
       <script src="../assets/js/html5shiv.js"></script>
       <script src="../assets/js/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery (for Bootstrap's JavaScript plugins) -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Include all  plugins or individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//js.arcgis.com/3.13compact"></script>
   </head>
   <body>
 
@@ -40,44 +46,20 @@
     <div class="container" width="100%" height= "100%">
       <div id="mapDiv"></div>
     </div>
-    
-    <script type="text/javascript">
-        var package_path = "//esri.github.com/bootstrap-map-js/src/js";
-        var dojoConfig = {
-            packages: [{
-                name: "application",
-                location: package_path
-            }]
-        };
 
-        addPoint(10, 10);
-
-        function addPoint(x, y)
-        {
-          var point = new esri.geometry.Point(x, y, new esri.SpatialReference({ wkid: 102113 }));
-          var mp = esri.geometry.geographicToWebMercator(point);
-          point = new esri.geometry.Point({ "x": mp.x, "y": mp.y, "spatialReference": { "wkid": 102113} });
-          var graphic = new esri.Graphic(point, defaultSymbol);
-          map.graphics.add(graphic);
-        }
-    </script>
-    <script src="//js.arcgis.com/3.13compact"></script>
     <script>
-        require(["esri/map", "application/bootstrapmap", "dojo/domReady!"], 
-          function(Map, BootstrapMap) {
-            // Get a reference to the ArcGIS Map class
-            var map = BootstrapMap.create("mapDiv",{
-              basemap:"dark-gray",
-              center:[35.14, -6.10],
-              zoom:6
-            });
-        });
+      var package_path = "//esri.github.com/bootstrap-map-js/src/js";
+      var dojoConfig = {
+        packages: [{
+          name: "application",
+          location: package_path
+        }]
+      };
     </script>
 
-    <!-- jQuery (for Bootstrap's JavaScript plugins) -->
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <!-- Include all  plugins or individual files as needed -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+
+
   </body>
 </html>
              
