@@ -14,7 +14,7 @@ $(document).ready(function(){
         }
     );
 
-    $.get("http://fbwu.rob4001.co.uk/hive",
+    $.get("http://fbwu.rob4001.co.uk/apii/hive",
         function (data) {
             $("#data_table").html(generateData(data, apiaryID));
         }
@@ -67,8 +67,7 @@ function generateInfo(data) {
         return "This apiary does not exist."
     }
 
-    var html = "<div id=\"info_table\">"
-        + "<table id=\"info\">"
+    var html = "<table id=\"info\">"
             + "<tr class=\"info_row\">"
                 + "<td>Name</td>"
                 + "<td>" + data.NameApiary + "</td>"
@@ -93,8 +92,7 @@ function generateInfo(data) {
                 + "<td>Accessibility</td>"
                 + "<td>" + data.Accessibility + "</td>"
             + "</tr>"
-        + "</table>"
-        + "</div>";
+        + "</table>";
 
     return html;
 };

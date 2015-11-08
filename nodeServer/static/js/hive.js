@@ -45,7 +45,8 @@ function generateHarvests(harvests, hiveID) {
         return "No harvests available for this hive."
     }
 
-    var html = '<table id="harvests">'
+    var html = '<div id="title">Inspections</div>'
+        + '<table id="harvests">'
         + '<tr class="data_row">'
             + '<th>Date</th>'
             + '<th>Quantity</th>'
@@ -86,7 +87,8 @@ function generateInspections(inspections, hiveID) {
         return "No inspections available for this hive."
     }
 
-    var html = "<table id=\"inspections\">"
+    var html = "<div id=\"table_title\">Inspections</div>"
+        + "<table id=\"inspections\">"
         + "<tr class=\"data_row\">"
         + "<th>Date</th>"
         + "<th>Weather Condition</th>"
