@@ -54,7 +54,7 @@ function generateData(hives, apiaryID) {
                 + "<td>" + hive.GPS + "</td>"
                 + "<td>" + hive.DateCreated + "</td>"
                 + "<td>" + hive.HiveType + "</td>"
-                + "<td>" + l("hive.SunExp") + "</td>"
+                + "<td>" + l(hive.SunExp) + "</td>"
             + "</tr>";
     });
 

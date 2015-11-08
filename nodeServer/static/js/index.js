@@ -5,6 +5,6 @@
 $(document).ready(function(){
 
     $("#login").click(function() {
-        window.location.replace(window.location.href + "/login.html");
+        window.location.replace(window.location.href + "login.html");
     });
 });
