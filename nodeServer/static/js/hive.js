@@ -97,7 +97,7 @@ function generateInspections(inspections, hiveID) {
 
     data.forEach(function(inspection) {
         html += "<tr class=\"data_row\">"
-            + "<td><a href='" + inspection.IDInspection + "'>" + inspection.DateInspection + "</a></td>"
+            + "<td><a href='../inspection.html?id=" + inspection.IDInspection + "'>" + inspection.DateInspection + "</a></td>"
             + "<td>" + inspection.WeatherCond + "</td>"
             + "<td>" + inspection.HiveState + "</td>"
             + "</tr>";

@@ -21,7 +21,8 @@ function generateInfo(data) {
         return "<p>This apiary does not exist.</p>"
     }
 
-    var html = "<table id=\"info\" class=\"table table-striped\">"
+    var html = "<h2>Harvest (Hive #" + data.IDHive + ")</h2>"
+        + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
             + "<td>Date</td>"
             + "<td>" + data.DateHarvest + "</td>"
@@ -43,7 +44,7 @@ function generateInfo(data) {
             + "<td>" + data.Smoker + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Numjber of clean, airtight buckets available for harvest</td>"
+            + "<td>Number of clean, airtight buckets available for harvest</td>"
             + "<td>" + data.BucketNumber + "</td>"
         + "</tr>"
         + "</table>";
