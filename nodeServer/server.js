@@ -8,6 +8,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var crypto = require('crypto');
 
+app.use(cookieParser());
 app.use(bodyparser.json()); // for parsing application/json
 app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -20,11 +21,15 @@ String.prototype.capitalize = function() {
 app.use(express.static('static'));
 
 app.use(session({ secret: 'keyboard cat',
-                  resave: false,
-                  saveUninitialized: false}));
-app.use(cookieParser());
+                  resave: true,
+                  saveUninitialized: true}));
+
+
 
 // passport
+
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(new LocalStrategy(
   function(username, password, done) {
     pool.query('SELECT * FROM UserView WHERE Login = ? LIMIT 1',[username], function(err, rows, fields) {
@@ -55,8 +60,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-app.use(passport.initialize());
-app.use(passport.session())
+
 
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
