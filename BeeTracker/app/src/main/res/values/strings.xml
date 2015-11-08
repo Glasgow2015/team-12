@@ -5,4 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="inspect_new">New Inspection</string>
     <string name="harvest_new">New Harvest</string>
+    <string name="sync_test">Synchronise</string>
+    <string name="sync_tel_num">01133203905</string>
 </resources>
