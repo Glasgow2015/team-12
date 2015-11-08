@@ -3,15 +3,12 @@ $(document).ready(function(){
     var loc = window.location.href;
     var userID = loc.split("?")[1];
     userID = userID.split("=")[1];
-    var info = {};
 
     $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
         function(data) {
-            info = data.tesponseJSON;
-        }
+            $("#info_table").html(generateInfo(data.responseJSON));
+        }, JSON
     );
-
-    $("#info_table").html(generateInfo(info));
 
     var apiaries = [];
 

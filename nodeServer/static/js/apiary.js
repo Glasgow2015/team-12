@@ -75,7 +75,7 @@ function generateInfo(data) {
         + "<table id=\"info\">"
             + "<tr class=\"info_row\">"
                 + "<td>Name</td>"
-                + "<td>" + data.name + "</td>"
+                + "<td>" + data.NameApiary + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>GPS Location</td>"
