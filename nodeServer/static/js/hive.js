@@ -4,6 +4,10 @@
 
 $(document).ready(function(){
 
+    if (location.hash) {
+        String.locale = location.hash.substr(1);
+    }
+
     var loc = window.location.href;
     var hiveID = loc.split("?")[1];
     hiveID = hiveID.split("=")[1];

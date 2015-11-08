@@ -4,6 +4,10 @@
 
 $(document).ready(function() {
 
+    if (location.hash) {
+        String.locale = location.hash.substr(1);
+    }
+
     var loc = window.location.href;
     var userID = loc.split("?")[1];
     userID = userID.split("=")[1];
