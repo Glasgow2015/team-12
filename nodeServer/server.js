@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var pool = require('./lib/database.js');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var crypto = require('crypto');
 
 app.use(bodyparser.json()); // for parsing application/json
 app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
