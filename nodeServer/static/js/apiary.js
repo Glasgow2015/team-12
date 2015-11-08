@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 function generateData(hives, apiaryID) {
     if (hives === undefined) {
-        return "<p>No hives in this apiary.</p>"
+        return "<p>" + l("No hives in this apiary") + ".</p>"
     }
 
     var data = [];
@@ -35,17 +35,17 @@ function generateData(hives, apiaryID) {
     });
 
     if (data.length === 0) {
-        return "<p>No hives in this apiary.</p>"
+        return "<p>" + l("No hives in this apiary") + ".</p>"
     }
 
-    var html = "<h3 id=\"table_title\">Hives</h3>"
+    var html = "<h3 id=\"table_title\">" + l("Hives") + "</h3>"
         + "<table id=\"data\" class=\"table table-striped\">"
         + "<tr id=\"table_title_row\" class=\"data_row\">"
-            + "<th>Number</th>"
-            + "<th>Location</th>"
-            + "<th>Date of installation</th>"
-            + "<th>Type</th>"
-            + "<th>Sun Exposure</th>"
+            + "<th>" + l("Number") + "</th>"
+            + "<th>" + l("Location") + "</th>"
+            + "<th>" + l("Date of installation") + "</th>"
+            + "<th>" + l("Type") + "</th>"
+            + "<th>" + l("Sun Exposure") + "</th>"
         + "</tr>";
 
     data.forEach(function(hive) {
@@ -54,7 +54,7 @@ function generateData(hives, apiaryID) {
                 + "<td>" + hive.GPS + "</td>"
                 + "<td>" + hive.DateCreated + "</td>"
                 + "<td>" + hive.HiveType + "</td>"
-                + "<td>" + hive.SunExp + "</td>"
+                + "<td>" + l("hive.SunExp") + "</td>"
             + "</tr>";
     });
 
@@ -64,35 +64,40 @@ function generateData(hives, apiaryID) {
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "<p>This apiary does not exist.</p>"
+        return "<p>" + l("This apiary does not exist") + ".</p>"
     }
 
-    var html = "<table id=\"info\" class=\"table table-striped\">"
+    var html = "<h2>" + l("Apiary") + "</h2>"
+            + "<table id=\"info\" class=\"table table-striped\">"
             + "<tr class=\"info_row\">"
-                + "<td>Name</td>"
+                + "<td>" + l("Name") + "</td>"
                 + "<td>" + data.NameApiary + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
-                + "<td>GPS Location</td>"
+                + "<td>" + l("GPS Location") + "</td>"
                 + "<td>" + data.GPS + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
-                + "<td>Year of commencing apiary</td>"
+                + "<td>" + l("Year of commencing apiary") + "</td>"
                 + "<td>" + data.DateCreated + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
-                + "<td>Harvesting months</td>"
+                + "<td>" + l("Harvesting months") + "</td>"
                 + "<td>" + data.HARVMON + "</td>"
             + "</tr>"
             + "<tr>"
-                + "<td>Environment</td>"
+                + "<td>" + l("Environment") + "</td>"
                 + "<td>" + data.ENV + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
-                + "<td>Accessibility</td>"
+                + "<td>" + l("Accessibility") + "</td>"
                 + "<td>" + data.ACC + "</td>"
             + "</tr>"
         + "</table>";
 
     return html;
+};
+
+function l(string) {
+    return string.toLocaleString();
 };
