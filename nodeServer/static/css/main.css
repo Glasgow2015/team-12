@@ -1,3 +1,7 @@
-nav, header {
+.content {
     width: 100%;
+}
+
+nav {
+    margin: 0;
 }
