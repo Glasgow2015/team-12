@@ -131,7 +131,7 @@ function generateInfo(data) {
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Date of installation") + "</td>"
-            + "<td>" + data.DateCreated + "</td>"
+            + "<td>" + parseTime(data.DateCreated) + "</td>"
         + "</tr>"
         + "<tr>"
             + "<td>" + l("Hive type") + "</td>"
