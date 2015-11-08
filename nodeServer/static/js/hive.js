@@ -45,7 +45,7 @@ function generateHarvests(harvests, hiveID) {
         return "<p>No harvests available for this hive.</p>"
     }
 
-    var html = '<h2 id="title">Harvests</h2>'
+    var html = '<h3 id="title">Harvests</h3>'
         + '<table id="harvests" class="table table-striped">'
         + '<tr class="data_row">'
             + '<th>Date</th>'
@@ -58,7 +58,7 @@ function generateHarvests(harvests, hiveID) {
 
     data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
-                + "<td><a href='harvest.html/id=" + harvest.IDHarvest + "' " + harvest.DateHarvest + "</a></td>"
+                + "<td><a href='harvest.html/id=" + harvest.IDHarvest + "'>" + harvest.DateHarvest + "</a></td>"
                 + "<td>" + harvest.Quantity + "</td>"
                 + "<td>" + harvest.BeeKeeperClothes + "</td>"
                 + "<td>" + harvest.AllAssistantTools + "</td>"
@@ -87,7 +87,7 @@ function generateInspections(inspections, hiveID) {
         return "<p>No inspections available for this hive.</p>"
     }
 
-    var html = "<h2 id=\"table_title\">Inspections</h2>"
+    var html = "<h3 id=\"table_title\">Inspections</h3>"
         + "<table id=\"inspections\" class=\"table table-striped\">"
         + "<tr class=\"data_row\">"
         + "<th>Date</th>"
