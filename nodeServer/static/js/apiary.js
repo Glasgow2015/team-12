@@ -84,7 +84,7 @@ function generateInfo(data) {
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Year of commencing apiary") + "</td>"
-                + "<td>" + parseTime(data.DateCreated) + "</td>"
+                + "<td>" + parseYear(data.DateCreated) + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Harvesting months") + "</td>"
@@ -116,11 +116,16 @@ function parseTime(time) {
     return time.split("T")[0];
 };
 
+function parseYear(time) {
+    var date = parseTime(time);
+    return date.split("-")[0];
+};
+
 function parseHarvMon(mon) {
     var parts = mon.split("|");
     var text = "";
     parts.forEach(function(el) {
-        text += l(el.trim());
+        text += l(el.trim()) + " ";
     });
     return text;
 };
