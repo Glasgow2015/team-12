@@ -74,7 +74,7 @@ pool.query('CALL CreateApiary(?,?,?,?,?,?,?)',prepared,function(err,rows,fields)
   if(err) console.log(err);
   res.status(200).end();
 });
-})
+
 res.status(500).end();
 
 })
