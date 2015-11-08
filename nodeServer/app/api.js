@@ -67,7 +67,9 @@ router.post('/inspection', function(req, res) {
   for(var n in req.body) {
    if(req.body[n] == 'false') req.body[n] = 0;
    if(req.body[n] == 'true') req.body[n] = 1;
-   if(n != "DateInspection")req.body[n] = parseInt(req.body[n]);
+   if(n == "DateInspection"){
+     req.body[n] = Date.parse(req.body[n]);
+   }else{req.body[n] = parseInt(req.body[n]);}
    // you can get the value like this: myObject[propertyName]
   }
 
