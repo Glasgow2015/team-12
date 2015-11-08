@@ -5,3 +5,8 @@
 nav {
     margin: 0;
 }
+
+img {
+    float: right;
+    padding: 10px;
+}
