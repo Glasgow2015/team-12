@@ -16,6 +16,9 @@ String.prototype.capitalize = function() {
 // serve static files
 app.use(express.static('static'));
 
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(express.cookieParser());
+
 // passport
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -34,7 +37,7 @@ passport.use(new LocalStrategy(
 ));
 
 app.use(passport.initialize());
-
+app.use(passport.session())
 
 
 // send requests to API handler
