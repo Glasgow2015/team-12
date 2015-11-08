@@ -60,9 +60,35 @@ router.post('/apiary', function(req, res) {
 
 
 router.post('/inspection', function(req, res) {
+  IDHive: '755',
+  DateInspection: '8-11-2015',
+  WeatherCondT: '0',
+  HiveStateT: '0',
+  ColStrengthT: '0',
+  HiveTemper: '0',
+  QueenCellInBrood: 'false',
+  HoneyStoresT: '0',
+  PollenStoresT: '0',
+  SmallBeeT: '0',
+  VarraoT: '0',
+  Ant: 'false',
+  Brood: 'false',
+  HiveCondT: '0',
+  BeeToolsCondT: '0'
+
   console.log(req.body);
 
-  var prepared = [req.body.hiveid, req.body.date, req.body.weather, req.body.hivestate, req.body.colstr, req.body.temp, 1, "1,1", "1,1,1,1", 1, 4];
+  for(var n in req.body) {
+   if(req.body[n] == false) req.body[n] = 0;
+   if(req.body[n] == true) req.body[n] = 1;
+
+   // you can get the value like this: myObject[propertyName]
+  }
+
+  console.log(req.body);
+  var prepared = [req.body.IDHive, req.body.DateInspection, req.body.WeatherCondT, req.body.HiveStateT, req.body.ColStrengthT, req.body.HiveTemper, req.body.QueenCellInBrood,
+     req.body.HoneyStoresT+","+req.body.PollenStoresT, req.body.SmallBeeT+","+req.body.VarraoT+","+req.body.Ant+","+req.body.Brood, req.body.HiveCondT, req.body.BeeToolsCondT];
+  console.log(req.body);
   pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
     if (err) console.log(err);
     res.status(200).end();
