@@ -8,6 +8,7 @@ import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,33 +18,39 @@ import android.widget.Button;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.io.InputStreamReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 public class MainActivity extends ActionBarActivity {
 
     final String tag = MainActivity.class.getName();
 
+    public static NetSync netSync;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //NetSync sync = new NetSync();
-
-        //sync.start();
 
         setContentView(R.layout.activity_main);
+
+        netSync = new NetSync(this);
+        netSync.start();
 
         //Attaching event handlers to buttons
         Button inspectBtn = (Button) this.findViewById(R.id.inspect_new_btn);
 
-        inspectBtn.setOnClickListener(new Button.OnClickListener() {
+        inspectBtn.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -74,21 +81,21 @@ public class MainActivity extends ActionBarActivity {
         smsSyncBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cache = getCache();
-                StringBuilder sms = new StringBuilder();
 
-                String[] parts = cache.split(":");
-                sms.append(parts[0].replaceAll("\"",""));
-                sms.append(" new ");
-                sms.append(Arrays.toString(Arrays.copyOfRange(parts,1,parts.length)));
-                System.out.println(sms);
+                List<String> cache = getCache();
+                for(String command: cache) {
+                    StringBuilder sms = new StringBuilder();
+                    String[] parts = command.split(":");
+                    sms.append(parts[0].replaceAll("\"", ""));
+                    sms.append(" new ");
+                    sms.append(TextUtils.join(":", Arrays.copyOfRange(parts, 1, parts.length)));
+                    System.out.println(sms);
 
 
-
-
-                SmsManager sm = SmsManager.getDefault();
-                String phoneNo = getString(R.string.sync_tel_num);
-                sm.sendTextMessage(phoneNo, null, sms.toString(), null, null);
+                    SmsManager sm = SmsManager.getDefault();
+                    String phoneNo = getString(R.string.sync_tel_num);
+                    sm.sendTextMessage(phoneNo, null, sms.toString(), null, null);
+                }
             }
         });
 
@@ -105,8 +112,8 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public String getCache(){
-        String ret = "";
+    public List<String> getCache(){
+        List<String> ret = new ArrayList<String>();
 
         try {
             InputStream inputStream = openFileInput("bees.cache.json");
@@ -115,14 +122,14 @@ public class MainActivity extends ActionBarActivity {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
+
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
+                    ret.add(receiveString);
                 }
 
                 inputStream.close();
-                ret = stringBuilder.toString();
+
             }
         }
         catch (FileNotFoundException e) {

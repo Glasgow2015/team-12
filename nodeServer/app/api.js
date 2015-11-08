@@ -60,9 +60,21 @@ router.post('/apiary', function(req, res) {
 
 
 router.post('/inspection', function(req, res) {
+
+
   console.log(req.body);
 
-  var prepared = [req.body.hiveid, req.body.date, req.body.weather, req.body.hivestate, req.body.colstr, req.body.temp, 1, "1,1", "1,1,1,1", 1, 4];
+  for(var n in req.body) {
+   if(req.body[n] == false) req.body[n] = 0;
+   if(req.body[n] == true) req.body[n] = 1;
+
+   // you can get the value like this: myObject[propertyName]
+  }
+
+  console.log(req.body);
+  var prepared = [req.body.IDHive, req.body.DateInspection, req.body.WeatherCondT, req.body.HiveStateT, req.body.ColStrengthT, req.body.HiveTemper, req.body.QueenCellInBrood,
+     (req.body.HoneyStoresT+1)+","+(  req.body.PollenStoresT+1), (req.body.SmallBeeT+1)+","+(req.body.VarraoT+1)+","+req.body.Ant+","+req.body.Brood, req.body.HiveCondT, req.body.BeeToolsCondT];
+  console.log(prepared);
   pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
     if (err) console.log(err);
     res.status(200).end();

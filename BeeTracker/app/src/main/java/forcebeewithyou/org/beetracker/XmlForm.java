@@ -14,7 +14,7 @@ import java.util.Vector;
  */
 public class XmlForm {
     final String tag = XmlForm.class.getName();
-    public static final String FILE_NAME = "bees.cache.json";
+
 
     private String formName;
     private String formNo;
@@ -51,25 +51,31 @@ public class XmlForm {
         this.formNo = formNo;
     }
 
-    public void persistForm(Context ctx){
+    public void persistForm(Context ctx) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < fields.size(); i++) {
             stringBuilder.append(fields.get(i).toString());
 
-            if(i<fields.size()-1){
+            if (i < fields.size() - 1) {
                 stringBuilder.append(", ");
             }
         }
 
-        String formString = "" + "\""+ formName + "\":{" + stringBuilder.toString() + "}";
+        IOHandler handler = new IOHandler(ctx);
 
+        String formString = formName + "|{" + stringBuilder.toString() + "}";
+
+        FileOutputStream fileOS = null;
         try {
-            FileOutputStream fileOS = ctx.openFileOutput(FILE_NAME, Context.MODE_APPEND);
+            fileOS = ctx.openFileOutput(IOHandler.FILE_NAME, Context.MODE_APPEND);
+
             OutputStreamWriter writer = new OutputStreamWriter(fileOS);
             writer.write(formString + "\n");
             writer.close();
+
+            handler.writeData(formString);
 
             Log.i(tag, "Wrote: " + formString);
         } catch (FileNotFoundException e) {
