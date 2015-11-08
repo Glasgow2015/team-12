@@ -65,8 +65,8 @@ router.post('/inspection', function(req, res) {
   console.log(req.body);
 
   for(var n in req.body) {
-   if(req.body[n] == false) req.body[n] = 0;
-   if(req.body[n] == true) req.body[n] = 1;
+   if(req.body[n] == 'false') req.body[n] = 0;
+   if(req.body[n] == 'true') req.body[n] = 1;
 
    // you can get the value like this: myObject[propertyName]
   }
