@@ -45,7 +45,7 @@ function generateHarvests(harvests, hiveID) {
         return "No harvests available for this hive."
     }
 
-    var html = '<div id="title">Inspections</div>'
+    var html = '<h2 id="title">Inspections</h2>'
         + '<table id="harvests">'
         + '<tr class="data_row">'
             + '<th>Date</th>'
@@ -87,8 +87,8 @@ function generateInspections(inspections, hiveID) {
         return "No inspections available for this hive."
     }
 
-    var html = "<div id=\"table_title\">Inspections</div>"
-        + "<table id=\"inspections\">"
+    var html = "<h2 id=\"table_title\">Inspections</h2>"
+        + "<table id=\"inspections\" class=\"table\">"
         + "<tr class=\"data_row\">"
         + "<th>Date</th>"
         + "<th>Weather Condition</th>"
@@ -114,10 +114,10 @@ function generateInfo(data) {
 
     var html = "<div id=\"info_table\">"
         + "<img src=\"" + data.PictureName + "\" alt=\"Image of hive\" />"
-        + "<table id=\"info\">"
+        + "<table id=\"info\" class=\"table\">"
         + "<tr class=\"info_row\">"
             + "<td>Apiary</td>"
-            + "<td><a href=\"apiary.html?id=" + data.ApiaryName + "\">Apiary 1</a></td>"
+            + "<td><a href=\"apiary.html?id=" + data.IDApiary + "\">[Replace with actual apiary name]</a></td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>Number</td>"

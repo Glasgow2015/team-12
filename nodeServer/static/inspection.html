@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <title>Dashboard - Inspection overview</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/apiary.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/npm.js"></script>
 </head>
 <body>
+<div class="container">
 <div id="header">
-    <div id="title">Force Bee w/ U</div>
+    <h1>Force Bee w/ U</h1>
 </div>
 
 <div id="main">
     <div id="info_table">
-        <table id="info">
+        <table id="info" class="table">
             <tr class="info_row">
                 <td>Name</td>
                 <td>Apiary 1</td>
@@ -46,8 +48,8 @@
     <button id="print">Print</button>
 
     <div id="data_table">
-        <div id="table_title">Hives</div>
-        <table id="data">
+        <h2 id="table_title">Hives</h2>
+        <table id="data" class="table">
             <tr id="table_title_row" class="data_row">
                 <th>Number</th>
                 <th>Location</th>
@@ -72,6 +74,9 @@
         </table>
     </div>
 </div>
+</div>
+
+<script type="text/javascript" src="js/inspection.js"></script>
 
 </body>
 </html>

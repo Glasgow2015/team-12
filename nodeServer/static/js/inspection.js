@@ -21,7 +21,7 @@ function generateInfo(inspection) {
         return "There are no inspections available with this ID.";
     }
 
-    var html = "<table id=\"info\">"
+    var html = "<table id=\"info\" class=\"table\">"
         + "<tr class=\"info_row\">"
             + "<td>Hive</td>"
             + "<td>" + inspection.IDHive + "td>"

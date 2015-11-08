@@ -38,7 +38,7 @@ function generateData(hives, apiaryID) {
         return "No hives in this apiary."
     }
 
-    var html = "<table id=\"data\">"
+    var html = "<table id=\"data\" class=\"table\">"
         + "<tr id=\"table_title_row\" class=\"data_row\">"
             + "<th>Number</th>"
             + "<th>Location</th>"
@@ -66,7 +66,7 @@ function generateInfo(data) {
         return "This apiary does not exist."
     }
 
-    var html = "<table id=\"info\">"
+    var html = "<table id=\"info\" class=\"table\">"
             + "<tr class=\"info_row\">"
                 + "<td>Name</td>"
                 + "<td>" + data.NameApiary + "</td>"

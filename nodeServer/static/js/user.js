@@ -23,7 +23,7 @@ function generateInfo(data) {
         return "There are no users available with this ID.";
     }
 
-    var html = "<table id=\"info\">"
+    var html = "<table id=\"info\" class=\"table\">"
         + "<tr class=\"info_row\">"
             + "<td>E-mail</td>"
             + "<td>" + data.Email + "</td>"
@@ -60,7 +60,7 @@ function generateData(apiaries, userID) {
 
     var html;
     html = "<div id=\"table_title\">Apiaries</div>" +
-        "<table id=\"data\">\n    " +
+        "<table id=\"data\" class=\"table\">\n    " +
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
             "<th>Name</th>\n        " +
             "<th>Location</th>\n        " +
