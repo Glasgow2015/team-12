@@ -97,33 +97,39 @@ pool.query('SELECT * FROM Apiary WHERE IDInspection = ? LIMIT 1',req.params.id, 
 
 router.post('/inspection',function(req,res){
   console.log(req.body);
-  pool.query('SELECT * FROM WeatherCondDict where NameType =  ? LIMIT 1',[req.body.weather],function(err, rows, fields){
-    if(err) console.log(err);
-    var weather = rows[0];
-    pool.query('SELECT * FROM HiveStateDict where NameType =  ? LIMIT 1',[req.body.hivestate],function(err, rows, fields){
-      if(err) console.log(err);
-      var hivestate = rows[0];
-      pool.query('SELECT * FROM ColStrengthDict where NameType =  ? LIMIT 1',[req.body.colstr],function(err, rows, fields){
-        if(err) console.log(err);
-        var colstr = rows[0];
-        pool.query('SELECT * FROM HiveTemperT where NameType =  ? LIMIT 1',[req.body.temp],function(err, rows, fields){
-          if(err) console.log(err);
-          var temp = rows[0];
-          var prepared = [req.body.hiveid,req.body.date,weather,hivestate,colstr,temp,1,"1,1","1,1,1,1",1,4];
-          pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
-            if(err) console.log(err);
-            res.status(200).end();
-          });
-        });
+  // pool.query('SELECT * FROM WeatherCondDict where NameType =  ? LIMIT 1',[req.body.weather],function(err, rows, fields){
+  //   if(err) console.log(err);
+  //   var weather = rows[0];
+  //   pool.query('SELECT * FROM HiveStateDict where NameType =  ? LIMIT 1',[req.body.hivestate],function(err, rows, fields){
+  //     if(err) console.log(err);
+  //     var hivestate = rows[0];
+  //     pool.query('SELECT * FROM ColStrengthDict where NameType =  ? LIMIT 1',[req.body.colstr],function(err, rows, fields){
+  //       if(err) console.log(err);
+  //       var colstr = rows[0];
+  //       pool.query('SELECT * FROM HiveTemperT where NameType =  ? LIMIT 1',[req.body.temp],function(err, rows, fields){
+  //         if(err) console.log(err);
+  //         var temp = rows[0];
+  //         var prepared = [req.body.hiveid,req.body.date,weather,hivestate,colstr,temp,1,"1,1","1,1,1,1",1,4];
+  //         pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+  //           if(err) console.log(err);
+  //           res.status(200).end();
+  //         });
+  //       });
+  //
+  //
+  //     });
+  //
+  //
+  //   });
+  //
+  //
+  // });
 
-
-      });
-
-
-    });
-
-
-  });
+  var prepared = [req.body.hiveid,req.body.date,req.body.weather,req.body.hivestate,req.body.colstr,req.body.temp,1,"1,1","1,1,1,1",1,4];
+           pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+             if(err) console.log(err);
+             res.status(200).end();
+           });
   res.status(500).end();
 
 
