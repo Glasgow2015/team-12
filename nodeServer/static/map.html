@@ -61,10 +61,12 @@
                         position: myLatLng,
                         title: element.OBJTYPE + " " + element.ID,
                         colour: colour,
-                        url: "google.co.uk"
+                        url: href
                       });
                       markers.push(marker);
-                        google.maps.event.addListener(marker, 'click', loadURL(marker));
+                        google.maps.event.addListener(marker, 'click', function() {
+                            window.location.href = this.url;
+                        });
                     });
                 }
 
