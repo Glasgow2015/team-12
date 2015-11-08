@@ -11,9 +11,9 @@ router.post('/', function(req,res){
   var request = req.body.Body;
   var commands = request.split(" ");
   console.log(commands);
-  switch (commands[0]){
+  switch (commands.shift()){
     case "inspection":
-      twiml = executeInspection(commands.shift(),twiml);
+      twiml = executeInspection(commands,twiml);
       break;
       default: console.log("Didnt work");
   }
@@ -29,8 +29,8 @@ router.post('/', function(req,res){
 
 function executeInspection(commands,twiml){
   console.log(commands);
-   switch (commands[0]) {
-     case "new": twiml.message("Im gonna make a new inspection with the rest" + commands.shift().join());
+   switch (commands.shift()) {
+     case "new": twiml.message("Im gonna make a new inspection with the rest" + commands.join());
      console.log("WORKED!");
 
        break;
