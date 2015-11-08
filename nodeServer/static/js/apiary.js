@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/apiary/" + apiaryID,
         function(data) {
-            $("#info_table").html(generateInfo(data.responseJSON));
+            $("#info_table").html(generateInfo(data));
         }
     );
 
