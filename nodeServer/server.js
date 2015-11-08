@@ -8,6 +8,10 @@ var pool = require('./lib/database.js');
 app.use(bodyparser.json()); // for parsing application/json
 app.use(bodyparser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+// Add Capitialize to String
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
 
 // serve static files
 app.use(express.static('static'));

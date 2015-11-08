@@ -14,34 +14,45 @@ router.get('/', function(req, res) {
   res.send('Welcome to the Force Bee With You API');
 });
 
-router.get("/destroyalltables",function(req,res){
-
-    pool.query('DROP TABLE test2;', function(err, rows, fields) {
+router.get("/:type",function(req,res){
+    var type = req.params.type.capitalize();
+    var table = type+"View";
+    pool.query('SELECT * FROM ??;',[table], function(err, rows, fields) {
       if (err) console.log(err);
       res.json(rows);
     });
 })
 
-router.get('/hive', function(req, res) {
-
-  pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-
-})
-
-router.get('/hive/:id', function(req, res) {
-
-
-  pool.query('SELECT * FROM HiveView WHERE IDHive = ? LIMIT 1', [req.params.id], function(err, rows, fields) {
+router.get("/:type/:id",function(req,res){
+  var type = req.params.type.capitalize();
+  var table = type+"View";
+  var ID = "ID"+type;
+  pool.query('SELECT * FROM ?? WHERE ?? = ? LIMIT 1;',[table,ID,req.params.id], function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
+})
 
-
-});
+// router.get('/hive', function(req, res) {
+//
+//   pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows);
+//   });
+//
+//
+// })
+//
+// router.get('/hive/:id', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM HiveView WHERE IDHive = ? LIMIT 1', [req.params.id], function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows[0]);
+//   });
+//
+//
+// });
 
 
 
@@ -55,24 +66,24 @@ router.post('/hive/:id', function(req, res) {
 })
 
 
-router.get('/apiary', function(req, res) {
-
-
-  pool.query('SELECT * FROM ApiaryView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-})
-
-
-router.get('/apiary/:id', function(req, res) {
-
-  pool.query('SELECT * FROM ApiaryView WHERE IDApiary = ? LIMIT 1', req.params.id, function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows[0]);
-  });
-});
+// router.get('/apiary', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM ApiaryView', function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows);
+//   });
+//
+// })
+//
+//
+// router.get('/apiary/:id', function(req, res) {
+//
+//   pool.query('SELECT * FROM ApiaryView WHERE IDApiary = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows[0]);
+//   });
+// });
 
 router.post('/apiary', function(req, res) {
 
@@ -90,25 +101,25 @@ router.post('/apiary', function(req, res) {
 
 })
 
-router.get('/inspection', function(req, res) {
-
-
-  pool.query('SELECT * FROM InspectionView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-})
-
-
-router.get('/inspection/:id', function(req, res) {
-
-  pool.query('SELECT * FROM InspectionView WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows[0]);
-  });
-
-});
+// router.get('/inspection', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM InspectionView', function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows);
+//   });
+//
+// })
+//
+//
+// router.get('/inspection/:id', function(req, res) {
+//
+//   pool.query('SELECT * FROM InspectionView WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows[0]);
+//   });
+//
+// });
 
 router.post('/inspection', function(req, res) {
   console.log(req.body);
@@ -151,24 +162,24 @@ router.post('/inspection', function(req, res) {
 
 })
 
-router.get('/harvest', function(req, res) {
-
-
-  pool.query('SELECT * FROM HarvestView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-})
-
-
-router.get('/harvest/:id', function(req, res) {
-
-  pool.query('SELECT * FROM HarvestView WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows[0]);
-  });
-});
+// router.get('/harvest', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM HarvestView', function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows);
+//   });
+//
+// })
+//
+//
+// router.get('/harvest/:id', function(req, res) {
+//
+//   pool.query('SELECT * FROM HarvestView WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows[0]);
+//   });
+// });
 
 
 router.get('/dictionary/:type', function(req, res) {
@@ -200,24 +211,24 @@ router.post('/user', function(req, res) {
 
 });
 
-router.get('/user', function(req, res) {
-
-
-  pool.query('SELECT * FROM UserView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-})
-
-router.get('/user/:id', function(req, res) {
-
-
-  pool.query('SELECT * FROM UserView WHERE IDUser = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows[0]);
-  });
-
-})
+// router.get('/user', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM UserView', function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows);
+//   });
+//
+// })
+//
+// router.get('/user/:id', function(req, res) {
+//
+//
+//   pool.query('SELECT * FROM UserView WHERE IDUser = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+//     if (err) console.log(err);
+//     res.json(rows[0]);
+//   });
+//
+// })
 
 module.exports = router;
