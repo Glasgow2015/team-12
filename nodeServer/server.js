@@ -32,11 +32,12 @@ passport.use(new LocalStrategy(
       if (!rows[0]) {
         return done(null, false, { message: 'Incorrect username.' });
       }
+      console.log(rows[0]);
       var hashedPass = crypto.createHash('md5').update(password);
       if (rows[0].UserPassword != hashedPass) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      console.log(rows[0]);
+
       return done(null, rows[0]);
     });
   }
