@@ -9,7 +9,8 @@ $(document).ready(function(){
     }
 
     var loc = window.location.href;
-    var harvestID = loc.split("?")[1];
+    var harvestID = loc.split("#")[0];
+    harvestID = harvestID.split("?")[1];
     harvestID = harvestID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/harvest/" + harvestID,
@@ -22,36 +23,44 @@ $(document).ready(function(){
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "<p>This apiary does not exist.</p>"
+        return "<p>" + l("This apiary does not exist") + ".</p>"
     }
 
-    var html = "<h2>Harvest (Hive #" + data.IDHive + ")</h2>"
+    var html = "<h2>" + l("Harvest") + " (" + l("Hive") + " #" + data.IDHive + ")</h2>"
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
-            + "<td>Date</td>"
-            + "<td>" + data.DateHarvest + "</td>"
+            + "<td>" + l("Date") + "</td>"
+            + "<td>" + parseTime(data.DateHarvest) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Quantity, number of ripe combs harvested</td>"
+            + "<td>" + l("Quantity, number of ripe combs harvested") + "</td>"
             + "<td>" + data.Quantity + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Protective clothing available for beekeepers</td>"
+            + "<td>" + l("Protective clothing available for beekeepers") + "</td>"
             + "<td>" + data.BeeKeeperClothes + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Protective clothing available for all assistants</td>"
+            + "<td>" + l("Protective clothing available for all assistants") + "</td>"
             + "<td>" + data.AllAssistantTools + "</td>"
         + "</tr>"
         + "<tr>"
-            + "<td>Smoker available</td>"
+            + "<td>" + l("Smoker available") + "</td>"
             + "<td>" + data.Smoker + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Number of clean, airtight buckets available for harvest</td>"
+            + "<td>" + l("Number of clean, airtight buckets available for harvest") + "</td>"
             + "<td>" + data.BucketNumber + "</td>"
         + "</tr>"
         + "</table>";
 
     return html;
 };
+
+function l(string) {
+    return string.toLocaleString();
+};
+
+function parseTime(time) {
+    return time.split("T")[0];
+}

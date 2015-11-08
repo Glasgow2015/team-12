@@ -9,7 +9,8 @@ $(document).ready(function() {
     }
 
     var loc = window.location.href;
-    var userID = loc.split("?")[1];
+    var userID = loc.split("#")[0];
+    userID = userID.split("?")[1];
     userID = userID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/inspection/" + userID,
@@ -33,7 +34,7 @@ function generateInfo(inspection) {
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Date") + "</td>"
-            + "<td>" + inspection.DateInspection + "</td>"
+            + "<td>" + parseTime(inspection.DateInspection) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Weather conditions") + "</td>"
@@ -65,7 +66,7 @@ function generateInfo(inspection) {
             + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>" + l("Dieseases and Pests") + "</td>"
+            + "<td>" + l("Diseases and Pests") + "</td>"
             + "<td>"
                 + "<ul>"
                     + "<li>" + l("Small Hive Beetle") + ": " + inspection.SmallBee + "</li>"
@@ -91,3 +92,7 @@ function generateInfo(inspection) {
 function l(string) {
     return string.toLocaleString();
 };
+
+function parseTime(time) {
+    return time.split("T")[0];
+}
