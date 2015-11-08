@@ -73,7 +73,7 @@ function generateData(apiaries, userID) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"apiary.html?id=" + apiary.IDApiary + "\">" + apiary.NameApiary + "</a></td>"
                 + "<td>" + parseGPS(apiary.GPS) + "</td>"
-                + "<td>" + parseTime(apiary.DateCreated) + "</td>"
+                + "<td>" + parseYear(apiary.DateCreated) + "</td>"
                 + "<td>" + parseHarvMon(apiary.HARVMON) + "</td>"
             + "</tr>"
     });
@@ -94,11 +94,16 @@ function parseHarvMon(mon) {
         text += l(el.trim());
     });
     return text;
-}
+};
+
+function parseYear(time) {
+    var date = parseTime(time);
+    return date.split("-")[0];
+};
 
 function parseTime(time) {
     return time.split("T")[0];
-}
+};
 
 function l(string) {
     return string.toLocaleString();
