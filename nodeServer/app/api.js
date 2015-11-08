@@ -131,7 +131,7 @@ pool.query('SELECT * FROM Harvest WHERE IDHarvest = ? LIMIT 1',req.params.id, fu
 
 
 router.get('/dictionary/:type',function(req,res){
-  if(str.indexOf(req.params.type, str.length - req.params.type.length) !== -1){
+  if(req.params.type.indexOf('Dict', req.params.type.length - 'Dict'.length) !== -1){
   pool.query('SELECT * FROM ?? ',req.params.type, function(err, rows, fields) {
     if (err) console.log(err  );
     res.json(rows);
