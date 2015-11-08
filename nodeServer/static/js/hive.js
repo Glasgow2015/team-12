@@ -36,7 +36,7 @@ function generateHarvests(harvests, hiveID) {
 
     var data = [];
     harvests.forEach(function(harvest) {
-        if (harvest.IDHive === hiveID) {
+        if (harvest.IDHive == hiveID) {
             data.push(harvest);
         }
     });
@@ -78,7 +78,7 @@ function generateInspections(inspections, hiveID) {
 
     var data = [];
     inspections.forEach(function(inspection) {
-        if (inspection.IDHive === hiveID) {
+        if (inspection.IDHive == hiveID) {
             data.push(inspection);
         }
     });
