@@ -7,12 +7,11 @@ $(document).ready(function(){
     var loc = window.location.href;
     var apiaryID = loc.split("?")[1];
     apiaryID = apiaryID.split("=")[1];
-    var info = {};
 
     $.get("http://fbwu.rob4001.co.uk/api/apiary/" + apiaryID,
         function(data) {
-            info = data.responseJSON;
-        }
+            $("#info_table").html(generateInfo(data.responseJSON));
+        }, JSON
     );
 
     $("#info_table").html(generateInfo(info));
