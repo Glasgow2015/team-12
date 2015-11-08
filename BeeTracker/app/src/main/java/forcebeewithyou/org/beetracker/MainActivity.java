@@ -24,14 +24,16 @@ public class MainActivity extends ActionBarActivity {
 
     final String tag = MainActivity.class.getName();
 
+    public static NetSync netSync;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //NetSync sync = new NetSync();
-
-        //sync.start();
 
         setContentView(R.layout.activity_main);
+
+        netSync = new NetSync(this);
+        netSync.start();
 
         //Attaching event handlers to buttons
         Button inspectBtn = (Button) this.findViewById(R.id.inspect_new_btn);
@@ -72,6 +74,7 @@ public class MainActivity extends ActionBarActivity {
                 sm.sendTextMessage(phoneNo, null, "inspection new text", null, null);
             }
         });
+
 
 
     }
