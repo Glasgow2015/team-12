@@ -14,7 +14,7 @@ $(document).ready(function(){
         }
     );
 
-    $.get("api/hive",
+    $.get("http://fbwu.rob4001.co.uk/hive",
         function (data) {
             $("#data_table").html(generateData(data, apiaryID));
         }

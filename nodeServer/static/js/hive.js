@@ -14,13 +14,13 @@ $(document).ready(function(){
         }
     );
 
-   $.get("api/inspection",
+   $.get("http://fbwu.rob4001.co.uk/api/inspection",
        function (data) {
            $("#inspections").html(generateInspections(data, hiveID));
         }
    );
 
-    $.get("api/harvest",
+    $.get("http://fbwu.rob4001.co.uk/api/harvest",
         function (data) {
             $("#harvests").html(generateHarvests(data, hiveID));
         }
@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 function generateHarvests(harvests, hiveID) {
     if (harvests === undefined) {
-        return "No inspections available for this hive."
+        return "No harvests available for this hive."
     }
 
     var data = [];
@@ -42,7 +42,7 @@ function generateHarvests(harvests, hiveID) {
     });
 
     if (data.length === 0) {
-        return "No inspections available for this hive."
+        return "No harvests available for this hive."
     }
 
     var html = '<table id="harvests">'
