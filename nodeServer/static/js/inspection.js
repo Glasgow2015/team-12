@@ -24,7 +24,7 @@ function generateInfo(inspection) {
     var html = "<table id=\"info\" class=\"table\">"
         + "<tr class=\"info_row\">"
             + "<td>Hive</td>"
-            + "<td>" + inspection.IDHive + "td>"
+            + "<td>" + inspection.IDHive + "<td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>Date</td>"

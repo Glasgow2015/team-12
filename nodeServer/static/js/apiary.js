@@ -38,7 +38,8 @@ function generateData(hives, apiaryID) {
         return "No hives in this apiary."
     }
 
-    var html = "<table id=\"data\" class=\"table\">"
+    var html = "<h2 id=\"table_title\">Hives</h2>"
+        + "<table id=\"data\" class=\"table\">"
         + "<tr id=\"table_title_row\" class=\"data_row\">"
             + "<th>Number</th>"
             + "<th>Location</th>"
