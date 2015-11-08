@@ -56,7 +56,7 @@ function generateData(apiaries, userID) {
     }
 
     var html;
-    html = "<h2 id=\"table_title\">Apiaries</h2>" +
+    html = "<h3 id=\"table_title\">Apiaries</h3>" +
         "<table id=\"data\" class=\"table table-striped\">\n    " +
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
             "<th>Name</th>\n        " +
