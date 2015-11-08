@@ -10,31 +10,28 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
-            $("#info_table").html(generateInfo(data.responseJSON));
-        }, JSON
+            $("#info_table").html(generateInfo(data));
+        }
     );
 
-    var inspections = [];
+   $.get("http://fbwu.rob4001.co.uk/api/inspection",
+       function (data) {
+           $("#inspections").html(generateInspections(data, hiveID));
+        }
+   );
 
-    $.get("api/inspection", function (data) {
-        inspections = data;
-    });
+    $.get("http://fbwu.rob4001.co.uk/api/harvest",
+        function (data) {
+            $("#harvests").html(generateHarvests(data, hiveID));
+        }
+    );
 
-    $("#inspections").html(generateInspections(inspections, hiveID));
-
-    var harvests = [];
-
-    $.get("api/harvest", function (data) {
-        harvests = data;
-    });
-
-    $("#harvests").html(generateHarvests(harvests, hiveID));
 
 });
 
 function generateHarvests(harvests, hiveID) {
     if (harvests === undefined) {
-        return "No inspections available for this hive."
+        return "No harvests available for this hive."
     }
 
     var data = [];
@@ -45,10 +42,11 @@ function generateHarvests(harvests, hiveID) {
     });
 
     if (data.length === 0) {
-        return "No inspections available for this hive."
+        return "No harvests available for this hive."
     }
 
-    var html = '<table id="harvests">'
+    var html = '<div id="title">Inspections</div>'
+        + '<table id="harvests">'
         + '<tr class="data_row">'
             + '<th>Date</th>'
             + '<th>Quantity</th>'
@@ -89,7 +87,8 @@ function generateInspections(inspections, hiveID) {
         return "No inspections available for this hive."
     }
 
-    var html = "<table id=\"inspections\">"
+    var html = "<div id=\"table_title\">Inspections</div>"
+        + "<table id=\"inspections\">"
         + "<tr class=\"data_row\">"
         + "<th>Date</th>"
         + "<th>Weather Condition</th>"

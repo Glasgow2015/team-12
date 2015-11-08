@@ -10,19 +10,15 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/apiary/" + apiaryID,
         function(data) {
-            $("#info_table").html(generateInfo(data.responseJSON));
-        }, JSON
+            $("#info_table").html(generateInfo(data));
+        }
     );
 
-    $("#info_table").html(generateInfo(info));
-
-    var hives = [];
-
-    $.get("api/hive", function (data) {
-        hives = data;
-    });
-
-    $("#data_table").html(generateData(hives, apiaryID));
+    $.get("http://fbwu.rob4001.co.uk/api/hive",
+        function (data) {
+            $("#data_table").html(generateData(data, apiaryID));
+        }
+    );
 
 });
 
@@ -71,8 +67,7 @@ function generateInfo(data) {
         return "This apiary does not exist."
     }
 
-    var html = "<div id=\"info_table\">"
-        + "<table id=\"info\">"
+    var html = "<table id=\"info\">"
             + "<tr class=\"info_row\">"
                 + "<td>Name</td>"
                 + "<td>" + data.NameApiary + "</td>"
@@ -97,8 +92,7 @@ function generateInfo(data) {
                 + "<td>Accessibility</td>"
                 + "<td>" + data.Accessibility + "</td>"
             + "</tr>"
-        + "</table>"
-        + "</div>";
+        + "</table>";
 
     return html;
 };
