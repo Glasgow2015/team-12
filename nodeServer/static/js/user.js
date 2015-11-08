@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    if (location.hash) {
+        String.locale = location.hash.substr(1);
+    }
+
     var loc = window.location.href;
     var userID = loc.split("?")[1];
     userID = userID.split("=")[1];
@@ -39,7 +43,6 @@ function generateInfo(data) {
 };
 
 function generateData(apiaries, userID) {
-
     if (apiaries.length === undefined) {
         return "<p>No apiaries found.</p>"
     }
@@ -68,7 +71,7 @@ function generateData(apiaries, userID) {
     data.forEach(function(apiary) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"apiary.html?id=" + apiary.IDApiary + "\">" + apiary.NameApiary + "</a></td>"
-                + "<td>" + apiary.GPS + "</td>"
+                + "<td>" + parseGPS(apiary.GPS) + "</td>"
                 + "<td>" + apiary.DateCreated + "</td>"
                 + "<td>" + apiary.HAVMON + "</td>"
             + "</tr>"
@@ -77,3 +80,8 @@ function generateData(apiaries, userID) {
     html += "</table>";
     return html;
 }
+
+function parseGPS(GPS) {
+    var parts = GPS.split("|");
+    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
+};
