@@ -52,16 +52,19 @@
                       if (element.OBJTYPE == "HiveView") {
                         var colour = "blue";
                         var href = "http://fbwu.rob4001.co.uk/hive.html?id=" + element.ID;
+                          var image = "img/bee.png";
                       } else {
                         var colour = "red";
                         var href = "http://fbwu.rob4001.co.uk/apiary.html?id=" + element.ID;
+                          var image = "img/apiary.png";
                       }
                       var marker = new google.maps.Marker({
                         map: map,
                         position: myLatLng,
                         title: element.OBJTYPE + " " + element.ID,
                         colour: colour,
-                        url: href
+                        url: href,
+                          icon: image
                       });
                       markers.push(marker);
                         google.maps.event.addListener(marker, 'click', function() {
