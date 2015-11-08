@@ -58,7 +58,7 @@ function generateHarvests(harvests, hiveID) {
 
     data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
-                + "<td><a href='harvest.html/id=' " + harvest.DateHarvest + "</a></td>"
+                + "<td><a href='harvest.html/id=" + harvest.IDHarvest + "' " + harvest.DateHarvest + "</a></td>"
                 + "<td>" + harvest.Quantity + "</td>"
                 + "<td>" + harvest.BeeKeeperClothes + "</td>"
                 + "<td>" + harvest.AllAssistantTools + "</td>"
