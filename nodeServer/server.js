@@ -51,7 +51,7 @@ app.post('/login',
 );
 
 app.get('/me',function(req,res){
-  console.log(res.user);
+  console.log(req.user);
   req.redirect('/user.html?id='+req.user.IDUser);
 })
 
