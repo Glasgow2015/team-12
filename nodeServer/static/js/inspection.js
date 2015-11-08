@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 function generateInfo(inspection) {
-    if ($.isEmptyObject(data)) {
+    if ($.isEmptyObject(inspection)) {
         return "There are no inspections available with this ID.";
     }
 
