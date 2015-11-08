@@ -29,7 +29,7 @@ function generateData(hives, apiaryID) {
 
     var data = [];
     hives.forEach(function(hive) {
-        if (hive.IDApiary === apiaryID) {
+        if (hive.IDApiary == apiaryID) {
             data.push(hive);
         }
     });

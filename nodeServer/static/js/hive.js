@@ -41,7 +41,7 @@ function generateHarvests(harvests, hiveID) {
         }
     });
 
-    if (data.length === 0) {
+    if (data.length == 0) {
         return "<p>No harvests available for this hive.</p>"
     }
 
@@ -58,7 +58,7 @@ function generateHarvests(harvests, hiveID) {
 
     data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
-                + "<td><a href='inspection.html/id=' " + harvest.DateHarvest + "</a></td>"
+                + "<td><a href='harvest.html/id=' " + harvest.DateHarvest + "</a></td>"
                 + "<td>" + harvest.WeatherCond + "</td>"
                 + "<td>" + harvest.BeeKeeperClothes + "</td>"
                 + "<td>" + harvest.AllAssistantTools + "</td>"
