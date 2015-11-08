@@ -19,7 +19,7 @@ router.get('/hive/:id', function(req, res) {
 
 pool.query('SELECT * FROM Hive WHERE IDHive = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
   if (err) console.log(err);
-  res.json(rows);
+  res.json(rows[0]);
 });
 
 
@@ -30,7 +30,7 @@ router.get('/hive', function(req,res){
 
 pool.query('SELECT * FROM Hive', function(err, rows, fields) {
   if (err) console.log(err  );
-  res.json(rows[0]);
+  res.json(rows);
 });
 
 
@@ -97,17 +97,37 @@ pool.query('SELECT * FROM Apiary WHERE IDInspection = ? LIMIT 1',req.params.id, 
 
 router.post('/inspection',function(req,res){
   console.log(req.body);
-  pool.query('SELECT * FROM UserRoleT where NameType =  ? LIMIT 1',[req.body.role],function(err, rows, fields){
+  pool.query('SELECT * FROM WeatherCondDict where NameType =  ? LIMIT 1',[req.body.weather],function(err, rows, fields){
     if(err) console.log(err);
-    console.log(rows);
-    var hashedPass = crypto.createHash('md5').update(req.body.password);
-    var prepared = [req.body.name,req.body.username,hashedPass,rows[0].IDUserRole,req.body.email,req.body.phone];
-    pool.query('CALL CreateInspection(?,?,?,?,?,?)',prepared,function(err,rows,fields){
+    var weather = rows[0];
+    pool.query('SELECT * FROM HiveStateDict where NameType =  ? LIMIT 1',[req.body.hivestate],function(err, rows, fields){
       if(err) console.log(err);
-      res.status(200).end();
+      var hivestate = rows[0];
+      pool.query('SELECT * FROM ColStrengthDict where NameType =  ? LIMIT 1',[req.body.colstr],function(err, rows, fields){
+        if(err) console.log(err);
+        var colstr = rows[0];
+        pool.query('SELECT * FROM HiveTemperT where NameType =  ? LIMIT 1',[req.body.temp],function(err, rows, fields){
+          if(err) console.log(err);
+          var temp = rows[0];
+          var prepared = [req.body.hiveid,req.body.date,weather,hivestate,colstr,temp,1,"1,1","1,1,1,1",1,4];
+          pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)',prepared,function(err,rows,fields){
+            if(err) console.log(err);
+            res.status(200).end();
+          });
+        });
+
+
+      });
+
+
     });
+
+
   });
   res.status(500).end();
+
+
+
 })
 
 router.get('/harvest', function(req,res){
@@ -145,7 +165,7 @@ router.post('/user',function(req,res){
 
   //TODO: Validate User params
   console.log(req.body);
-  pool.query('SELECT * FROM UserRoleT where NameType =  ? LIMIT 1',[req.body.role],function(err, rows, fields){
+  pool.query('SELECT * FROM UserRoleDict where NameType =  ? LIMIT 1',[req.body.role],function(err, rows, fields){
     if(err) console.log(err);
     console.log(rows);
     var hashedPass = crypto.createHash('md5').update(req.body.password);
