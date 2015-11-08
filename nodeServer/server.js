@@ -39,6 +39,7 @@ passport.use(new LocalStrategy(
       }
       console.log(rows[0]);
       var hashedPass = crypto.createHash('md5').update(password);
+      console.log(hashedPass);
       if (rows[0].UserPassword != hashedPass) {
         return done(null, false, { message: 'Incorrect password.' });
       }
