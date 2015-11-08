@@ -67,7 +67,7 @@ function generateInfo(data) {
         return "<p>This apiary does not exist.</p>"
     }
 
-    var html = "<table id=\"info\" class=\"table\">"
+    var html = "<table id=\"info\" class=\"table table-striped\">"
             + "<tr class=\"info_row\">"
                 + "<td>Name</td>"
                 + "<td>" + data.NameApiary + "</td>"
