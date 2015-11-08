@@ -65,16 +65,18 @@ router.post('/inspection', function(req, res) {
   console.log(req.body);
 
   for(var n in req.body) {
-   if(req.body[n] == false) req.body[n] = 0;
-   if(req.body[n] == true) req.body[n] = 1;
-
+   if(req.body[n] == 'false') req.body[n] = 0;
+   if(req.body[n] == 'true') req.body[n] = 1;
+   if(n == "DateInspection"){
+     req.body[n] = Date.parse(req.body[n]);
+   }else{req.body[n] = parseInt(req.body[n]);}
    // you can get the value like this: myObject[propertyName]
   }
 
   console.log(req.body);
   var prepared = [req.body.IDHive, req.body.DateInspection, req.body.WeatherCondT, req.body.HiveStateT, req.body.ColStrengthT, req.body.HiveTemper, req.body.QueenCellInBrood,
-     req.body.HoneyStoresT+","+req.body.PollenStoresT, req.body.SmallBeeT+","+req.body.VarraoT+","+req.body.Ant+","+req.body.Brood, req.body.HiveCondT, req.body.BeeToolsCondT];
-  console.log(req.body);
+     (req.body.HoneyStoresT+1)+","+(  req.body.PollenStoresT+1), (req.body.SmallBeeT+1)+","+(req.body.VarraoT+1)+","+req.body.Ant+","+req.body.Brood, req.body.HiveCondT, req.body.BeeToolsCondT];
+  console.log(prepared);
   pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
     if (err) console.log(err);
     res.status(200).end();
