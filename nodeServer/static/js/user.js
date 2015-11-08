@@ -15,7 +15,7 @@ $(document).ready(function(){
         }
     );
 
-    $.get("http://fbwu.rob4001.co.uk/api/apiary",
+    $.get("http://fbwu.rob4001.co.uk/api/ownedApiary",
         function (data) {
             $("#data_table").html(generateData(data, userID));
         }
