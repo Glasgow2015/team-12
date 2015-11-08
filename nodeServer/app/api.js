@@ -14,6 +14,14 @@ router.get('/', function(req, res) {
   res.send('Welcome to the Force Bee With You API');
 });
 
+router.get("/destroyalltables",function(req,res){
+
+    pool.query('DROP TABLE test2;', function(err, rows, fields) {
+      if (err) console.log(err);
+      res.json(rows);
+    });
+})
+
 router.get('/hive', function(req, res) {
 
   pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
