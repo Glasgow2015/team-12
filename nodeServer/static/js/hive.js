@@ -7,15 +7,12 @@ $(document).ready(function(){
     var loc = window.location.href;
     var hiveID = loc.split("?")[1];
     hiveID = hiveID.split("=")[1];
-    var info = {};
 
     $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
-            info = data.responseJSON;
-        }
+            $("#info_table").html(generateInfo(data.responseJSON));
+        }, JSON
     );
-
-    $("#info_table").html(generateInfo(info));
 
     var inspections = [];
 
