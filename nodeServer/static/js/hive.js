@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 function generateHarvests(harvests, hiveID) {
     if (harvests === undefined) {
-        return "No harvests available for this hive."
+        return "<p>No harvests available for this hive.</p>"
     }
 
     var data = [];
@@ -42,7 +42,7 @@ function generateHarvests(harvests, hiveID) {
     });
 
     if (data.length === 0) {
-        return "No harvests available for this hive."
+        return "<p>No harvests available for this hive.</p>"
     }
 
     var html = '<h2 id="title">Inspections</h2>'
@@ -73,7 +73,7 @@ function generateHarvests(harvests, hiveID) {
 
 function generateInspections(inspections, hiveID) {
     if (inspections === undefined) {
-        return "No inspections available for this hive."
+        return "<p>No inspections available for this hive.</p>"
     }
 
     var data = [];
@@ -84,7 +84,7 @@ function generateInspections(inspections, hiveID) {
     });
 
     if (data.length === 0) {
-        return "No inspections available for this hive."
+        return "<p>No inspections available for this hive.</p>"
     }
 
     var html = "<h2 id=\"table_title\">Inspections</h2>"
@@ -109,7 +109,7 @@ function generateInspections(inspections, hiveID) {
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "This apiary does not exist."
+        return "<p>This apiary does not exist.</p>"
     }
 
     var html = "<div id=\"info_table\">"

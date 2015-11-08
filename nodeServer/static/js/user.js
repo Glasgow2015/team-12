@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "There are no users available with this ID.";
+        return "<p>There are no users available with this ID.</p>";
     }
 
     var html = "<table id=\"info\" class=\"table\">"
@@ -44,7 +44,7 @@ function generateInfo(data) {
 function generateData(apiaries, userID) {
 
     if (apiaries.length === undefined) {
-        return "No apiaries found."
+        return "<p>No apiaries found.</p>"
     }
 
     var data = [];
@@ -55,7 +55,7 @@ function generateData(apiaries, userID) {
     });
 
     if (data.length === 0) {
-        return "No apiaries found."
+        return "<p>No apiaries found.</p>"
     }
 
     var html;

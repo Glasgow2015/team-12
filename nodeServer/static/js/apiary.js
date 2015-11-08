@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 function generateData(hives, apiaryID) {
     if (hives === undefined) {
-        return "No hives in this apiary."
+        return "<p>No hives in this apiary.</p>"
     }
 
     var data = [];
@@ -35,11 +35,11 @@ function generateData(hives, apiaryID) {
     });
 
     if (data.length === 0) {
-        return "No hives in this apiary."
+        return "<p>No hives in this apiary.</p>"
     }
 
     var html = "<h2 id=\"table_title\">Hives</h2>"
-        + "<table id=\"data\" class=\"table\">"
+        + "<table id=\"data\" class=\"table table-striped\">"
         + "<tr id=\"table_title_row\" class=\"data_row\">"
             + "<th>Number</th>"
             + "<th>Location</th>"
@@ -64,7 +64,7 @@ function generateData(hives, apiaryID) {
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "This apiary does not exist."
+        return "<p>This apiary does not exist.</p>"
     }
 
     var html = "<table id=\"info\" class=\"table\">"
@@ -82,15 +82,15 @@ function generateInfo(data) {
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>Harvesting months</td>"
-                + "<td>" + data.HarvestingMonths + "</td>"
+                + "<td>" + data.HARVMON + "</td>"
             + "</tr>"
             + "<tr>"
                 + "<td>Environment</td>"
-                + "<td>" + data.Environment + "</td>"
+                + "<td>" + data.ENV + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>Accessibility</td>"
-                + "<td>" + data.Accessibility + "</td>"
+                + "<td>" + data.ACC + "</td>"
             + "</tr>"
         + "</table>";
 

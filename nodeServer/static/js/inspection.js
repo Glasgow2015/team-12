@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 function generateInfo(inspection) {
     if ($.isEmptyObject(inspection)) {
-        return "There are no inspections available with this ID.";
+        return "<p>There are no inspections available with this ID.</p>";
     }
 
     var html = "<table id=\"info\" class=\"table\">"
