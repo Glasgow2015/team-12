@@ -23,7 +23,8 @@ function generateInfo(data) {
         return "<p>There are no users available with this ID.</p>";
     }
 
-    var html = "<table id=\"info\" class=\"table table-striped\">"
+    var html = "<h2>" + data.UserRole + " - " + data.NameUser + "</h2>"
+        + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
             + "<td>E-mail</td>"
             + "<td>" + data.Email + "</td>"
@@ -31,10 +32,6 @@ function generateInfo(data) {
         + "<tr class=\"info_row\">"
             + "<td>Phone</td>"
             + "<td>" + data.Phone + "</td>"
-        + "</tr>"
-        + "<tr class=\"info_row\">"
-            + "<td>[Sponsor/Manager] since</td>"
-            + "<td>0000</td>"
         + "</tr>"
         + "</table>";
 
@@ -64,16 +61,16 @@ function generateData(apiaries, userID) {
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
             "<th>Name</th>\n        " +
             "<th>Location</th>\n        " +
-            "<th>No of hives</th>\n        " +
-            "<th>No of sponsors</th>\n    " +
+            "<th>Year commencing apiary</th>\n        " +
+            "<th>Harvesting months</th>\n    " +
         "</tr>";
 
     data.forEach(function(apiary) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"apiary.html?id=" + apiary.IDApiary + "\">" + apiary.NameApiary + "</a></td>"
                 + "<td>" + apiary.GPS + "</td>"
-                + "<td>" + apiary.Hives + "</td>"
-                + "<td>" + apiary.Sponsors + "</td>"
+                + "<td>" + apiary.DateCreated + "</td>"
+                + "<td>" + apiary.HAVMON + "</td>"
             + "</tr>"
     });
 
