@@ -36,10 +36,20 @@ passport.use(new LocalStrategy(
       if (rows[0].UserPassword != hashedPass) {
         return done(null, false, { message: 'Incorrect password.' });
       }
+      console.log(rows[0]);
       return done(null, rows[0]);
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(err, user);
+
+});
 
 app.use(passport.initialize());
 app.use(passport.session())
