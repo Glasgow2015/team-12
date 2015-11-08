@@ -94,7 +94,7 @@ router.get('/inspection', function(req, res) {
 
 router.get('/inspection/:id', function(req, res) {
 
-  pool.query('SELECT * FROM Apiary WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+  pool.query('SELECT * FROM Inspection WHERE IDInspection = ? LIMIT 1', req.params.id, function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
