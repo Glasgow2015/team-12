@@ -91,7 +91,7 @@ function parseHarvMon(mon) {
     var parts = mon.split("|");
     var text = "";
     parts.forEach(function(el) {
-        text += l(el.trim());
+        text += l(el.trim()) + " ";
     });
     return text;
 };

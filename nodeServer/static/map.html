@@ -49,6 +49,17 @@
                 location: package_path
             }]
         };
+
+        addPoint(10, 10);
+
+        function addPoint(x, y)
+        {
+          var point = new esri.geometry.Point(x, y, new esri.SpatialReference({ wkid: 102113 }));
+          var mp = esri.geometry.geographicToWebMercator(point);
+          point = new esri.geometry.Point({ "x": mp.x, "y": mp.y, "spatialReference": { "wkid": 102113} });
+          var graphic = new esri.Graphic(point, defaultSymbol);
+          map.graphics.add(graphic);
+        }
     </script>
     <script src="//js.arcgis.com/3.13compact"></script>
     <script>
