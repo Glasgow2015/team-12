@@ -56,8 +56,8 @@ String.toLocaleString({
         "No apiaries found": "Hakuna apiaries kupatikana",
         "Phone": "Simu",
         "Email": "Barua pepe",
-        "There are no users available with this ID": "Hakuna watumiaji inapatikana kwa ID hii"
-
+        "There are no users available with this ID": "Hakuna watumiaji inapatikana kwa ID hii",
+        "Harvests": "Mavuno"
 
     }
 });

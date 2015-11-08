@@ -119,7 +119,7 @@ function generateInfo(data) {
 
     var html = "<h2>" + l("Hive") + "</h2>"
         + "<div id=\"info_table\">"
-        + "<img src=\"" + data.PictureName + "\" alt=\"Image of hive\" />"
+        + "<img src=\"" + data.PictureName + "\" alt=\"Image of hive\" class=\"center-block\"/>"
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Number") + "</td>"
@@ -131,7 +131,7 @@ function generateInfo(data) {
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Date of installation") + "</td>"
-            + "<td>" + data.DateCreated + "</td>"
+            + "<td>" + parseTime(data.DateCreated) + "</td>"
         + "</tr>"
         + "<tr>"
             + "<td>" + l("Hive type") + "</td>"
