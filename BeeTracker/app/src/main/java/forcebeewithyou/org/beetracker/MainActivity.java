@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 
 
@@ -70,18 +73,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        //Checking network connectivity
 
-        ConnectivityManager cmc = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo ni = cmc.getActiveNetworkInfo();
-
-        if (ni != null && ni.isConnected()){
-            smsSyncBtn.setEnabled(false);
-        }
-        else{
-            smsSyncBtn.setEnabled(true);
-        }
     }
 
     public void smsSync(){

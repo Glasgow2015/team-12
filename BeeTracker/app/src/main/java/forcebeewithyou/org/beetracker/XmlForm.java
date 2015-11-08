@@ -14,7 +14,7 @@ import java.util.Vector;
  */
 public class XmlForm {
     final String tag = XmlForm.class.getName();
-    private final String FILE_NAME = "bees.cache.json";
+    public static final String FILE_NAME = "bees.cache.json";
 
     private String formName;
     private String formNo;
@@ -63,7 +63,7 @@ public class XmlForm {
             }
         }
 
-        String formString = "{" + "\""+ formName + "\":{" + stringBuilder.toString() + "}}";
+        String formString = "" + "\""+ formName + "\":{" + stringBuilder.toString() + "}";
 
         try {
             FileOutputStream fileOS = ctx.openFileOutput(FILE_NAME, Context.MODE_APPEND);
