@@ -109,5 +109,5 @@ function l(string) {
 
 function parseGPS(GPS) {
     var parts = GPS.split("|");
-    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
+    return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
 };

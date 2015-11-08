@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 function generateHarvests(harvests, hiveID) {
     if (harvests === undefined) {
-        return "<p>No harvests available for this hive.</p>"
+        return "<p>" + l("No harvests available for this hive") + ".</p>"
     }
 
     var data = [];
@@ -46,18 +46,18 @@ function generateHarvests(harvests, hiveID) {
     });
 
     if (data.length == 0) {
-        return "<p>No harvests available for this hive.</p>"
+        return "<p>" + l("No harvests available for this hive") + ".</p>"
     }
 
-    var html = '<h3 id="title">Harvests</h3>'
+    var html = '<h3 id="title">" + l("Harvests") + "</h3>'
         + '<table id="harvests" class="table table-striped">'
         + '<tr class="data_row">'
-            + '<th>Date</th>'
-            + '<th>Quantity</th>'
-            + '<th>Protective clothing (beekeeper)</th>'
-            + '<th>Protective clothing (assistants)</th>'
-            + '<th>Smoker available</th>'
-            + '<th>Number of buckets available</th>'
+            + '<th>' + l("Date") + '</th>'
+            + '<th>' + l("Quantity") + '</th>'
+            + '<th>' + l("Protective clothing (beekeeper)") + '</th>'
+            + '<th>' + l("Protective clothing (assistants)") + '</th>'
+            + '<th>' + l("Smoker available") + '</th>'
+            + '<th>' + l("Number of buckets available") + '</th>'
         + '</tr>';
 
     data.forEach(function(harvest) {
@@ -77,7 +77,7 @@ function generateHarvests(harvests, hiveID) {
 
 function generateInspections(inspections, hiveID) {
     if (inspections === undefined) {
-        return "<p>No inspections available for this hive.</p>"
+        return "<p>" + l("No inspections available for this hive") + ".</p>";
     }
 
     var data = [];
@@ -88,15 +88,15 @@ function generateInspections(inspections, hiveID) {
     });
 
     if (data.length === 0) {
-        return "<p>No inspections available for this hive.</p>"
+        return "<p>" + l("No inspections available for this hive") + ".</p>";
     }
 
-    var html = "<h3 id=\"table_title\">Inspections</h3>"
+    var html = "<h3 id=\"table_title\">" + l("Inspections") + "</h3>"
         + "<table id=\"inspections\" class=\"table table-striped\">"
         + "<tr class=\"data_row\">"
-        + "<th>Date</th>"
-        + "<th>Weather Condition</th>"
-        + "<th>State</th>"
+        + "<th>" + l("Date") + "</th>"
+        + "<th>" + l("Weather Condition") + "</th>"
+        + "<th>" + l("State") + "</th>"
         + "</tr>";
 
     data.forEach(function(inspection) {
@@ -113,30 +113,31 @@ function generateInspections(inspections, hiveID) {
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "<p>This apiary does not exist.</p>"
+        return "<p>" + l("This apiary does not exist") + ".</p>"
     }
 
-    var html = "<div id=\"info_table\">"
+    var html = "<h2>" + l("Hive") + "</h2>"
+        + "<div id=\"info_table\">"
         + "<img src=\"" + data.PictureName + "\" alt=\"Image of hive\" />"
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
-            + "<td>Number</td>"
+            + "<td>" + l("Number") + "</td>"
             + "<td>" + data.HiveNumber + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>GPS location</td>"
+            + "<td>" + l("GPS location") + "</td>"
             + "<td>" + parseGPS(data.GPS) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Date of installation</td>"
+            + "<td>" + l("Date of installation") + "</td>"
             + "<td>" + data.DateCreated + "</td>"
         + "</tr>"
         + "<tr>"
-            + "<td>Hive type</td>"
+            + "<td>" + l("Hive type") + "</td>"
             + "<td>" + data.HiveType + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Sun exposure</td>"
+            + "<td>" + l("Sun exposure") + "</td>"
             + "<td>" + data.SunExp + "</td>"
         + "</tr>"
         + "</table>"
@@ -147,5 +148,9 @@ function generateInfo(data) {
 
 function parseGPS(GPS) {
     var parts = GPS.split("|");
-    return "Lat: " + parts[0].trim() + ", Long: " + parts[1].trim();
+    return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
+};
+
+function l(string) {
+    return string.toLocaleString();
 };

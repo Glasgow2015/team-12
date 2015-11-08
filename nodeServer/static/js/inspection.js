@@ -65,7 +65,7 @@ function generateInfo(inspection) {
             + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>" + l("Dieseases and Pests") + "</td>"
+            + "<td>" + l("Diseases and Pests") + "</td>"
             + "<td>"
                 + "<ul>"
                     + "<li>" + l("Small Hive Beetle") + ": " + inspection.SmallBee + "</li>"
