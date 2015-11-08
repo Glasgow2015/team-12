@@ -66,14 +66,14 @@ passport.deserializeUser(function(id, done) {
 
 
 app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/me',
+  passport.authenticate('local', { successRedirect: '/me',
+                                   failureRedirect: '/',
                                    failureFlash: false })
 );
 
 app.get('/me',function(req,res){
   console.log(req.user);
-  req.redirect('/user.html?id='+req.user.IDUser);
+  res.redirect('/user.html?id='+req.user.IDUser);
 })
 
 
