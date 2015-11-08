@@ -44,12 +44,15 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.IDUser);
 });
 
-passport.deserializeUser(function(user, done) {
-    done(err, user);
+passport.deserializeUser(function(id, done) {
+  pool.query('SELECT * FROM UserView WHERE IDUser = ? LIMIT 1',[id], function(err, rows, fields) {
+    if (err) { return done(err); }
 
+    return done(err, rows[0]);
+  });
 });
 
 app.use(passport.initialize());
