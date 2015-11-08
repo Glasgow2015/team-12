@@ -65,9 +65,11 @@ router.post('/inspection', function(req, res) {
   console.log(req.body);
 
   for(var n in req.body) {
-   if(req.body[n] == false) req.body[n] = 0;
-   if(req.body[n] == true) req.body[n] = 1;
-
+   if(req.body[n] == 'false') req.body[n] = 0;
+   if(req.body[n] == 'true') req.body[n] = 1;
+   if(n == "DateInspection"){
+     req.body[n] = Date.parse(req.body[n]);
+   }else{req.body[n] = parseInt(req.body[n]);}
    // you can get the value like this: myObject[propertyName]
   }
 
@@ -76,10 +78,11 @@ router.post('/inspection', function(req, res) {
      (req.body.HoneyStoresT+1)+","+(  req.body.PollenStoresT+1), (req.body.SmallBeeT+1)+","+(req.body.VarraoT+1)+","+req.body.Ant+","+req.body.Brood, req.body.HiveCondT, req.body.BeeToolsCondT];
   console.log(prepared);
   pool.query('CALL CreateInspection(?,?,?,?,?,?,?,?,?,?,?)', prepared, function(err, rows, fields) {
+    console.log("Stuff happened");
     if (err) console.log(err);
     res.status(200).end();
   });
-  res.status(500).end();
+  //res.status(500).end();
 
 
 
@@ -106,6 +109,7 @@ router.post('/user', function(req, res) {
     var hashedPass = crypto.createHash('md5').update(req.body.password);
     var prepared = [req.body.name, req.body.username, hashedPass, rows[0].IDUserRole, req.body.email, req.body.phone];
     pool.query('CALL CreateUser(?,?,?,?,?,?)', prepared, function(err, rows, fields) {
+
       if (err) console.log(err);
       res.status(200).end();
     });

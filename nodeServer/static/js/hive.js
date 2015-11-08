@@ -50,7 +50,7 @@ function generateHarvests(harvests, hiveID) {
         return "<p>" + l("No harvests available for this hive") + ".</p>"
     }
 
-    var html = '<h3 id="title">" + l("Harvests") + "</h3>'
+    var html = '<h3 id="title">' + l("Harvests") + '</h3>'
         + '<table id="harvests" class="table table-striped">'
         + '<tr class="data_row">'
             + '<th>' + l("Date") + '</th>'
