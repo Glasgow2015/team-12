@@ -17,7 +17,14 @@ import android.widget.Button;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -36,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
         //Attaching event handlers to buttons
         Button inspectBtn = (Button) this.findViewById(R.id.inspect_new_btn);
 
-        inspectBtn.setOnClickListener(new Button.OnClickListener(){
+        inspectBtn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -67,13 +74,63 @@ public class MainActivity extends ActionBarActivity {
         smsSyncBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String cache = getCache();
+                StringBuilder sms = new StringBuilder();
+
+                String[] parts = cache.split(":");
+                sms.append(parts[0].replaceAll("\"",""));
+                sms.append(" new ");
+                sms.append(Arrays.toString(Arrays.copyOfRange(parts,1,parts.length)));
+                System.out.println(sms);
+
+
+
+
                 SmsManager sm = SmsManager.getDefault();
                 String phoneNo = getString(R.string.sync_tel_num);
-                sm.sendTextMessage(phoneNo, null, "inspection new text", null, null);
+                sm.sendTextMessage(phoneNo, null, sms.toString(), null, null);
             }
         });
 
+        Button printBtn = (Button) this.findViewById(R.id.print_test);
 
+        printBtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                System.out.println(getCache());
+            }
+        });
+
+    }
+
+    public String getCache(){
+        String ret = "";
+
+        try {
+            InputStream inputStream = openFileInput("bees.cache.json");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+        return ret;
     }
 
     public void smsSync(){
