@@ -13,7 +13,7 @@ router.post('/', function(req,res){
   console.log(commands);
   switch (commands[0]){
     case "inspection":
-      executeInspection(commands.shift(),twiml);
+      twiml = executeInspection(commands.shift(),twiml);
       break;
       default: console.log("Didnt work");
   }
@@ -37,6 +37,7 @@ function executeInspection(commands,twiml){
      default:
 
    }
+   return twiml;
 }
 
 

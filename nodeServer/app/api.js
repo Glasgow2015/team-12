@@ -49,7 +49,7 @@ router.post('/hive/:id', function(req,res){
 router.get('/apiary', function(req,res){
 
 
-pool.query('SELECT * FROM Apiary', function(err, rows, fields) {
+pool.query('SELECT * FROM ApiaryView', function(err, rows, fields) {
   if (err) console.log(err  );
   res.json(rows);
 });
@@ -131,10 +131,14 @@ pool.query('SELECT * FROM Harvest WHERE IDHarvest = ? LIMIT 1',req.params.id, fu
 
 
 router.get('/dictionary/:type',function(req,res){
+  if(req.params.type.indexOf('Dict', req.params.type.length - 'Dict'.length) !== -1){
   pool.query('SELECT * FROM ?? ',req.params.type, function(err, rows, fields) {
     if (err) console.log(err  );
     res.json(rows);
   });
+}else{
+  res.json({});
+}
 })
 
 router.post('/user',function(req,res){
