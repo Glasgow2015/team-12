@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
     <style type="text/css">
       #mapDiv {
-        height: 100%; 
-        width: 100%; 
+        height: auto; 
+        width: auto; 
       }
     </style>
 
@@ -46,7 +46,7 @@
           function(Map, BootstrapMap) {
             // Get a reference to the ArcGIS Map class
             var map = BootstrapMap.create("mapDiv",{
-              basemap:"national-geographic",
+              basemap:"dark-grey",
               center:[-122.45,37.77],
               zoom:12
             });
