@@ -81,7 +81,7 @@ router.post('/inspection', function(req, res) {
     if (err) console.log(err);
     res.status(200).end();
   });
-  res.status(500).end();
+  //res.status(500).end();
 
 
 
