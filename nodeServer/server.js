@@ -26,7 +26,7 @@ app.use(cookieParser());
 // passport
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    pool.query('SELECT * FROM UserView WHERE Login = ? LIMIT 1',[username], function(err, user) {
+    pool.query('SELECT * FROM UserView WHERE Login = ? LIMIT 1',[username], function(err, rows, fields) {
       if (err) { return done(err); }
       if (!rows[0]) {
         return done(null, false, { message: 'Incorrect username.' });
