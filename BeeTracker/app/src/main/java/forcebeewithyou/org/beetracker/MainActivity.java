@@ -18,35 +18,39 @@ import android.widget.Button;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.InputStreamReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 public class MainActivity extends ActionBarActivity {
 
     final String tag = MainActivity.class.getName();
 
+    public static NetSync netSync;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //NetSync sync = new NetSync();
-
-        //sync.start();
 
         setContentView(R.layout.activity_main);
+
+        netSync = new NetSync(this);
+        netSync.start();
 
         //Attaching event handlers to buttons
         Button inspectBtn = (Button) this.findViewById(R.id.inspect_new_btn);
 
-        inspectBtn.setOnClickListener(new Button.OnClickListener() {
+        inspectBtn.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -77,6 +81,7 @@ public class MainActivity extends ActionBarActivity {
         smsSyncBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 List<String> cache = getCache();
                 for(String command: cache) {
                     StringBuilder sms = new StringBuilder();

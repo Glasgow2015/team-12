@@ -2,3 +2,4 @@ node_modules
 .idea
 *.iml
 build.gradle
+BeeTracker/app/src/main/java/forcebeewithyou/org/beetracker/MainActivity.java
