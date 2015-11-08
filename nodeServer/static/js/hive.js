@@ -11,8 +11,8 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
-            info = data.responseText;
-        }, JSON
+            info = data.responseJSON;
+        }
     );
 
     $("#info_table").html(generateInfo(info));
