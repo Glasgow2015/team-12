@@ -46,9 +46,14 @@ app.use(passport.session())
 
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
+                                   failureRedirect: '/me',
                                    failureFlash: false })
 );
+
+app.get('/me',function(req,res){
+  console.log(res.user);
+  req.redirect('/user.html?id='+req.user.IDUser);
+})
 
 
 // send requests to API handler
