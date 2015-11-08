@@ -9,7 +9,8 @@ $(document).ready(function(){
     }
 
     var loc = window.location.href;
-    var hiveID = loc.split("?")[1];
+    var hiveID = loc.split("#")[0];
+    hiveID = hiveID.split("?")[1];
     hiveID = hiveID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,

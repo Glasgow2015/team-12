@@ -9,7 +9,8 @@ $(document).ready(function(){
     }
 
     var loc = window.location.href;
-    var harvestID = loc.split("?")[1];
+    var harvestID = loc.split("#")[0];
+    harvestID = harvestID.split("?")[1];
     harvestID = harvestID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/harvest/" + harvestID,

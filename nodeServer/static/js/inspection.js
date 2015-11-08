@@ -9,7 +9,8 @@ $(document).ready(function() {
     }
 
     var loc = window.location.href;
-    var userID = loc.split("?")[1];
+    var userID = loc.split("#")[0];
+    userID = userID.split("?")[1];
     userID = userID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/inspection/" + userID,
