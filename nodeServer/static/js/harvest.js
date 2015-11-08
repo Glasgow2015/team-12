@@ -30,7 +30,7 @@ function generateInfo(data) {
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Date") + "</td>"
-            + "<td>" + data.DateHarvest + "</td>"
+            + "<td>" + parseTime(data.DateHarvest) + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
             + "<td>" + l("Quantity, number of ripe combs harvested") + "</td>"
@@ -60,3 +60,7 @@ function generateInfo(data) {
 function l(string) {
     return string.toLocaleString();
 };
+
+function parseTime(time) {
+    return time.split("T")[0];
+}

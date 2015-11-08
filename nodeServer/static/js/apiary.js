@@ -57,7 +57,7 @@ function generateData(hives, apiaryID) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"hive.html?id=" + hive.IDHive + "\">" + hive.HiveNumber + "</a></td>"
                 + "<td>" + parseGPS(hive.GPS) + "</td>"
-                + "<td>" + hive.DateCreated + "</td>"
+                + "<td>" + parseTime(hive.DateCreated) + "</td>"
                 + "<td>" + hive.HiveType + "</td>"
                 + "<td>" + l(hive.SunExp) + "</td>"
             + "</tr>";
@@ -84,15 +84,15 @@ function generateInfo(data) {
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Year of commencing apiary") + "</td>"
-                + "<td>" + data.DateCreated + "</td>"
+                + "<td>" + parseTime(data.DateCreated) + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Harvesting months") + "</td>"
-                + "<td>" + data.HARVMON + "</td>"
+                + "<td>" + parseHarvMon(data.HARVMON) + "</td>"
             + "</tr>"
             + "<tr>"
                 + "<td>" + l("Environment") + "</td>"
-                + "<td>" + data.ENV + "</td>"
+                + "<td>" + parseHarvMon(data.ENV) + "</td>"
             + "</tr>"
             + "<tr class=\"info_row\">"
                 + "<td>" + l("Accessibility") + "</td>"
@@ -110,4 +110,17 @@ function l(string) {
 function parseGPS(GPS) {
     var parts = GPS.split("|");
     return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
+};
+
+function parseTime(time) {
+    return time.split("T")[0];
+};
+
+function parseHarvMon(mon) {
+    var parts = mon.split("|");
+    var text = "";
+    parts.forEach(function(el) {
+        text += l(el.trim());
+    });
+    return text;
 };

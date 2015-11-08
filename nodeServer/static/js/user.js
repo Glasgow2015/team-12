@@ -73,8 +73,8 @@ function generateData(apiaries, userID) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"apiary.html?id=" + apiary.IDApiary + "\">" + apiary.NameApiary + "</a></td>"
                 + "<td>" + parseGPS(apiary.GPS) + "</td>"
-                + "<td>" + apiary.DateCreated + "</td>"
-                + "<td>" + apiary.HAVMON + "</td>"
+                + "<td>" + parseTime(apiary.DateCreated) + "</td>"
+                + "<td>" + parseHarvMon(apiary.HARVMON) + "</td>"
             + "</tr>"
     });
 
@@ -86,6 +86,19 @@ function parseGPS(GPS) {
     var parts = GPS.split("|");
     return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
 };
+
+function parseHarvMon(mon) {
+    var parts = mon.split("|");
+    var text = "";
+    parts.forEach(function(el) {
+        text += l(el.trim());
+    });
+    return text;
+}
+
+function parseTime(time) {
+    return time.split("T")[0];
+}
 
 function l(string) {
     return string.toLocaleString();
