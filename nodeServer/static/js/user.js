@@ -7,7 +7,7 @@ $(document).ready(function(){
     $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
         function(data) {
             $("#info_table").html(generateInfo(data));
-        }, JSON
+        }
     );
 
     var apiaries = [];

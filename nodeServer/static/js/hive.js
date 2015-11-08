@@ -10,8 +10,8 @@ $(document).ready(function(){
 
     $.get("http://fbwu.rob4001.co.uk/api/hive/" + hiveID,
         function(data) {
-            $("#info_table").html(generateInfo(data.responseJSON));
-        }, JSON
+            $("#info_table").html(generateInfo(data));
+        }
     );
 
     var inspections = [];
