@@ -60,21 +60,7 @@ router.post('/apiary', function(req, res) {
 
 
 router.post('/inspection', function(req, res) {
-  IDHive: '755',
-  DateInspection: '8-11-2015',
-  WeatherCondT: '0',
-  HiveStateT: '0',
-  ColStrengthT: '0',
-  HiveTemper: '0',
-  QueenCellInBrood: 'false',
-  HoneyStoresT: '0',
-  PollenStoresT: '0',
-  SmallBeeT: '0',
-  VarraoT: '0',
-  Ant: 'false',
-  Brood: 'false',
-  HiveCondT: '0',
-  BeeToolsCondT: '0'
+
 
   console.log(req.body);
 
