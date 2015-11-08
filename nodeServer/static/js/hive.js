@@ -50,16 +50,16 @@ function generateHarvests(harvests, hiveID) {
         + '<tr class="data_row">'
             + '<th>Date</th>'
             + '<th>Quantity</th>'
-            + '<th>Bee Keeper Clothes</th>'
-            + '<th>All Assistant Tools</th>'
-            + '<th>Smoker</th>'
-            + '<th>Bucket Number</th>'
+            + '<th>Protective clothing available for beekeeper</th>'
+            + '<th>Protective clothing available for all assistants</th>'
+            + '<th>Smoker available</th>'
+            + '<th>Number of buckets available</th>'
         + '</tr>';
 
     data.forEach(function(harvest) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href='harvest.html/id=' " + harvest.DateHarvest + "</a></td>"
-                + "<td>" + harvest.WeatherCond + "</td>"
+                + "<td>" + harvest.Quantity + "</td>"
                 + "<td>" + harvest.BeeKeeperClothes + "</td>"
                 + "<td>" + harvest.AllAssistantTools + "</td>"
                 + "<td>" + harvest.Smoker + "</td>"
@@ -116,10 +116,6 @@ function generateInfo(data) {
         + "<img src=\"" + data.PictureName + "\" alt=\"Image of hive\" />"
         + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
-            + "<td>Apiary</td>"
-            + "<td><a href=\"apiary.html?id=" + data.IDApiary + "\">[Replace with actual apiary name]</a></td>"
-        + "</tr>"
-        + "<tr class=\"info_row\">"
             + "<td>Number</td>"
             + "<td>" + data.HiveNumber + "</td>"
         + "</tr>"
@@ -132,12 +128,12 @@ function generateInfo(data) {
             + "<td>" + data.DateCreated + "</td>"
         + "</tr>"
         + "<tr>"
-            + "<td>Environment</td>"
-            + "<td>" + data.Environment + "</td>"
+            + "<td>Hive type</td>"
+            + "<td>" + data.HiveType + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Accessibility</td>"
-            + "<td>" + data.Accessibility + "</td>"
+            + "<td>Sun exposure</td>"
+            + "<td>" + data.SunExp + "</td>"
         + "</tr>"
         + "</table>"
         + "</div>";
