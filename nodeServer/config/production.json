@@ -1,8 +1,8 @@
 {
   "dbConfig":{
     "host": "localhost",
-    "user": "bee",
-    "password": "beez",
+    "user": "DBREMOTEUSER",
+    "password": "sa!&F87q3lgw",
     "database": "fbwu"
   }
 }

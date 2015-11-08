@@ -1,7 +1,12 @@
 $(document).ready(function(){
 
+    if (location.hash) {
+        String.locale = location.hash.substr(1);
+    }
+
     var loc = window.location.href;
-    var userID = loc.split("?")[1];
+    var userID = loc.split("#")[0];
+    userID = userID.split("?")[1];
     userID = userID.split("=")[1];
 
     $.get("http://fbwu.rob4001.co.uk/api/user/" + userID,
@@ -10,7 +15,7 @@ $(document).ready(function(){
         }
     );
 
-    $.get("http://fbwu.rob4001.co.uk/api/apiary",
+    $.get("http://fbwu.rob4001.co.uk/api/ownedApiary",
         function (data) {
             $("#data_table").html(generateData(data, userID));
         }
@@ -20,21 +25,18 @@ $(document).ready(function(){
 
 function generateInfo(data) {
     if ($.isEmptyObject(data)) {
-        return "<p>There are no users available with this ID.</p>";
+        return "<p>" + l("There are no users available with this ID") + ".</p>";
     }
 
-    var html = "<table id=\"info\" class=\"table table-striped\">"
+    var html = "<h2>" + data.UserRole + " - " + data.NameUser + "</h2>"
+        + "<table id=\"info\" class=\"table table-striped\">"
         + "<tr class=\"info_row\">"
-            + "<td>E-mail</td>"
+            + "<td>" + l("E-mail") + "</td>"
             + "<td>" + data.Email + "</td>"
         + "</tr>"
         + "<tr class=\"info_row\">"
-            + "<td>Phone</td>"
+            + "<td>" + l("Phone") + "</td>"
             + "<td>" + data.Phone + "</td>"
-        + "</tr>"
-        + "<tr class=\"info_row\">"
-            + "<td>[Sponsor/Manager] since</td>"
-            + "<td>0000</td>"
         + "</tr>"
         + "</table>";
 
@@ -42,9 +44,8 @@ function generateInfo(data) {
 };
 
 function generateData(apiaries, userID) {
-
     if (apiaries.length === undefined) {
-        return "<p>No apiaries found.</p>"
+        return "<p>" + l("No apiaries found") + ".</p>"
     }
 
     var data = [];
@@ -55,28 +56,37 @@ function generateData(apiaries, userID) {
     });
 
     if (data.length === 0) {
-        return "<p>No apiaries found.</p>"
+        return "<p>" + l("No apiaries found") + ".</p>"
     }
 
     var html;
-    html = "<h2 id=\"table_title\">Apiaries</h2>" +
+    html = "<h3 id=\"table_title\">" + l("Apiaries") + "</h3>" +
         "<table id=\"data\" class=\"table table-striped\">\n    " +
         "<tr id=\"table_title_row\" class=\"data_row\">\n        " +
-            "<th>Name</th>\n        " +
-            "<th>Location</th>\n        " +
-            "<th>No of hives</th>\n        " +
-            "<th>No of sponsors</th>\n    " +
+            "<th>" + l("Name") + "</th>\n        " +
+            "<th>" + l("Location") + "</th>\n        " +
+            "<th>" + l("Year commencing apiary") + "</th>\n        " +
+            "<th>" + l("Harvesting months") + "</th>\n    " +
         "</tr>";
 
     data.forEach(function(apiary) {
         html += "<tr class=\"data_row\">"
                 + "<td><a href=\"apiary.html?id=" + apiary.IDApiary + "\">" + apiary.NameApiary + "</a></td>"
-                + "<td>" + apiary.GPS + "</td>"
-                + "<td>" + apiary.Hives + "</td>"
-                + "<td>" + apiary.Sponsors + "</td>"
+                + "<td>" + parseGPS(apiary.GPS) + "</td>"
+                + "<td>" + apiary.DateCreated + "</td>"
+                + "<td>" + apiary.HAVMON + "</td>"
             + "</tr>"
     });
 
     html += "</table>";
     return html;
 }
+
+function parseGPS(GPS) {
+    var parts = GPS.split("|");
+    return l("Lat") + ": " + parts[0].trim() + ", " + l("Long") + ": " + parts[1].trim();
+};
+
+function l(string) {
+    return string.toLocaleString();
+};
