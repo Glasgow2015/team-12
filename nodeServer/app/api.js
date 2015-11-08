@@ -14,6 +14,16 @@ router.get('/', function(req, res) {
   res.send('Welcome to the Force Bee With You API');
 });
 
+router.get('/hive', function(req, res) {
+
+  pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
+    if (err) console.log(err);
+    res.json(rows);
+  });
+
+
+})
+
 router.get('/hive/:id', function(req, res) {
 
 
@@ -25,16 +35,7 @@ router.get('/hive/:id', function(req, res) {
 
 });
 
-router.get('/hive', function(req, res) {
 
-
-  pool.query('SELECT * FROM HiveView', function(err, rows, fields) {
-    if (err) console.log(err);
-    res.json(rows);
-  });
-
-
-})
 
 router.post('/hive', function(req, res) {
 
@@ -145,7 +146,7 @@ router.post('/inspection', function(req, res) {
 router.get('/harvest', function(req, res) {
 
 
-  pool.query('SELECT * FROM HarvesView', function(err, rows, fields) {
+  pool.query('SELECT * FROM HarvestView', function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows);
   });
@@ -155,7 +156,7 @@ router.get('/harvest', function(req, res) {
 
 router.get('/harvest/:id', function(req, res) {
 
-  pool.query('SELECT * FROM HarvesView WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
+  pool.query('SELECT * FROM HarvestView WHERE IDHarvest = ? LIMIT 1', req.params.id, function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows[0]);
   });
@@ -194,7 +195,7 @@ router.post('/user', function(req, res) {
 router.get('/user', function(req, res) {
 
 
-  pool.query('SELECT * FROM User', function(err, rows, fields) {
+  pool.query('SELECT * FROM UserView', function(err, rows, fields) {
     if (err) console.log(err);
     res.json(rows);
   });
@@ -204,9 +205,9 @@ router.get('/user', function(req, res) {
 router.get('/user/:id', function(req, res) {
 
 
-  pool.query('SELECT * FROM User WHERE IDUser = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
+  pool.query('SELECT * FROM UserView WHERE IDUser = ? LIMIT 1',[req.params.id], function(err, rows, fields) {
     if (err) console.log(err);
-    res.json(rows);
+    res.json(rows[0]);
   });
 
 })
